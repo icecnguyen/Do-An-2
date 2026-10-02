@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth antialiased">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OneKey AI — Cổng API Key AI Hợp Nhất, Tốc Độ Cao & Tiết Kiệm</title>
+  <meta name="description" content="Một API Key duy nhất cho GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro và DeepSeek. Chuẩn định dạng OpenAI, cấp tự động 24/7 qua VietQR, không cần thẻ quốc tế." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a',
+            },
+            surface: {
+              subtle: '#f8fafc',
+              border: '#e2e8f0',
+              muted: '#64748b',
+              dark: '#0f172a'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'Menlo', 'Monaco', 'Courier New', 'monospace']
+          },
+          boxShadow: {
+            'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.03)',
+            'card': '0 10px 30px -10px rgba(0, 0, 0, 0.05)',
+            'float': '0 20px 40px -15px rgba(15, 23, 42, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-[#ffffff] text-slate-900 selection:bg-blue-100 selection:text-blue-900 flex flex-col min-h-screen">
+
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo & Live Uptime Badge -->
+      <div class="flex items-center gap-4">
+        <a href="#" class="flex items-center gap-2.5 group">
+          <div class="w-8 h-8 rounded-lg bg-slate-950 text-white flex items-center justify-center font-bold text-sm shadow-sm transition-transform group-hover:scale-95">
+            <i data-lucide="key" class="w-4 h-4 text-blue-400"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight text-slate-950">OneKey<span class="text-blue-600 font-extrabold">.ai</span></span>
+        </a>
+
+        <!-- Status Pill: Subtle and Enterprise -->
+        <div class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-[11px] font-medium text-slate-600">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Hệ thống: <strong class="text-slate-800 font-semibold">99.98%</strong> uptime</span>
+        </div>
+      </div>
+
+      <!-- Navigation links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="#models" class="hover:text-slate-950 transition-colors">Mô hình hỗ trợ</a>
+        <a href="#pricing" class="hover:text-slate-950 transition-colors">Bảng giá nạp</a>
+        <a href="#apps" class="hover:text-slate-950 transition-colors">Ứng dụng tương thích</a>
+        <a href="#tester" class="hover:text-slate-950 transition-colors">Thử nghiệm trực tiếp</a>
+        <a href="#faq" class="hover:text-slate-950 transition-colors">FAQ</a>
+      </nav>
+
+      <!-- Action items -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="openCheckBalanceModal()" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-950 px-3 py-2 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400"></i>
+          <span>Tra cứu số dư Key</span>
+        </button>
+
+        <button onclick="openBuyModal('200k')" class="inline-flex items-center gap-2 bg-slate-950 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold shadow-sm transition active:scale-95">
+          <span>Nạp nhận Key</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-300"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none" aria-label="Menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 bg-white px-5 py-4 space-y-3 text-sm font-medium text-slate-700">
+      <div class="pb-2 border-b border-slate-100 flex items-center justify-between">
+        <span class="text-xs text-slate-500">Trạng thái hạ tầng</span>
+        <span class="inline-flex items-center gap-1 text-xs text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 99.98% Hoạt động
+        </span>
+      </div>
+      <a href="#models" class="block py-1 hover:text-blue-600" onclick="toggleMobileMenu()">Mô hình hỗ trợ</a>
+      <a href="#pricing" class="block py-1 hover:text-blue-600" onclick="toggleMobileMenu()">Bảng giá nạp</a>
+      <a href="#apps" class="block py-1 hover:text-blue-600" onclick="toggleMobileMenu()">Ứng dụng tương thích</a>
+      <a href="#tester" class="block py-1 hover:text-blue-600" onclick="toggleMobileMenu()">Thử nghiệm trực tiếp</a>
+      <a href="#faq" class="block py-1 hover:text-blue-600" onclick="toggleMobileMenu()">Câu hỏi thường gặp</a>
+      <div class="pt-2 border-t border-slate-100">
+        <button onclick="toggleMobileMenu(); openCheckBalanceModal();" class="w-full text-left py-1 text-blue-600 font-semibold flex items-center gap-2">
+          <i data-lucide="search" class="w-4 h-4"></i> Tra cứu số dư Key
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    
+    <section class="pt-16 pb-14 sm:pt-24 sm:pb-20 border-b border-slate-200/80 bg-gradient-to-b from-white via-[#fcfdfe] to-[#f8fafc]">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+        
+        <!-- Standard OpenAI format Tag -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold mb-6 shadow-2xs">
+          <span class="flex h-2 w-2 rounded-full bg-blue-600"></span>
+          <span>Chuẩn định dạng OpenAI API · Tiết kiệm đến 70% so với mua trực tiếp</span>
+        </div>
+
+        <!-- Hero Title -->
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-950 tracking-tight leading-[1.15] sm:leading-[1.15]">
+          Một API Key duy nhất cho mọi <br class="hidden sm:inline" />
+          <span class="bg-gradient-to-r from-slate-950 via-blue-700 to-slate-900 bg-clip-text text-transparent">mô hình AI hàng đầu thế giới</span>
+        </h1>
+
+        <!-- Hero Subtitle -->
+        <p class="mt-5 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
+          Khai thác sức mạnh của <strong class="text-slate-900 font-semibold">GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro và DeepSeek-R1</strong> qua một điểm kết nối đồng nhất. Không cần thẻ Visa quốc tế, cấp mã tức thì qua VietQR tự động.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button onclick="openBuyModal('200k')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-sm hover:shadow transition transform active:scale-[0.98]">
+            <i data-lucide="zap" class="w-4 h-4"></i>
+            <span>Nhận Key dùng ngay (Từ 50.000đ)</span>
+          </button>
+          <a href="#models" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 hover:border-slate-300 px-5 py-3 rounded-xl text-sm font-semibold transition">
+            <i data-lucide="activity" class="w-4 h-4 text-emerald-600"></i>
+            <span>Xem bảng kiểm tra độ trễ (Latency)</span>
+          </a>
+        </div>
+
+        <!-- Trust Metrics Bar -->
+        <div class="mt-14 pt-8 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+          <div class="p-3 bg-white rounded-xl border border-slate-200/80 shadow-subtle">
+            <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Độ trễ trung bình</div>
+            <div class="mt-1 flex items-baseline gap-1.5">
+              <span class="text-lg font-bold text-slate-900 font-mono">< 320ms</span>
+              <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-1 rounded">Cực thấp</span>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-0.5">Hạ tầng máy chủ định tuyến tối ưu</p>
+          </div>
+
+          <div class="p-3 bg-white rounded-xl border border-slate-200/80 shadow-subtle">
+            <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Chính sách hạn mức</div>
+            <div class="mt-1 flex items-baseline gap-1.5">
+              <span class="text-lg font-bold text-slate-900 font-mono">0 VNĐ</span>
+              <span class="text-[10px] text-blue-600 font-semibold bg-blue-50 px-1 rounded">Không phí tháng</span>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-0.5">Số dư không bao giờ hết hạn</p>
+          </div>
+
+          <div class="p-3 bg-white rounded-xl border border-slate-200/80 shadow-subtle">
+            <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Khả năng tương thích</div>
+            <div class="mt-1 flex items-baseline gap-1.5">
+              <span class="text-lg font-bold text-slate-900 font-mono">100%</span>
+              <span class="text-[10px] text-slate-600 font-semibold bg-slate-100 px-1 rounded">Chuẩn OpenAI</span>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-0.5">NextChat, Chatbox, Cursor, Cline</p>
+          </div>
+
+          <div class="p-3 bg-white rounded-xl border border-slate-200/80 shadow-subtle">
+            <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Kênh thanh toán</div>
+            <div class="mt-1 flex items-baseline gap-1.5">
+              <span class="text-lg font-bold text-slate-900 font-mono">VietQR 24/7</span>
+              <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-1 rounded">Khớp tự động</span>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-0.5">Nhận Key ngay sau khi chuyển khoản</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-20 bg-[#f8fafc] border-b border-slate-200" id="models">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-blue-600">Trực quan & Minh bạch</div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-950 mt-1">Danh Mục Mô Hình & Tốc Độ Trả Lời Thực Tế</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">Hệ thống liên tục kiểm tra ping thời gian thực đến cụm máy chủ toàn cầu.</p>
+          </div>
+
+          <!-- Category filter tabs -->
+          <div class="inline-flex p-1 rounded-xl bg-slate-200/70 text-xs font-semibold text-slate-600">
+            <button onclick="filterModels('all', this)" class="category-btn active px-3 py-1.5 rounded-lg bg-white text-slate-900 shadow-2xs transition">Tất cả</button>
+            <button onclick="filterModels('reasoning', this)" class="category-btn px-3 py-1.5 rounded-lg hover:text-slate-900 transition">Suy luận & Code</button>
+            <button onclick="filterModels('fast', this)" class="category-btn px-3 py-1.5 rounded-lg hover:text-slate-900 transition">Tốc độ & Tiết kiệm</button>
+          </div>
+        </div>
+
+        <!-- Live Models Table / Card Grid -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-card">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm">
+              <thead class="bg-slate-50/80 border-b border-slate-200 text-slate-500 uppercase text-[11px] font-semibold tracking-wider">
+                <tr>
+                  <th class="py-3.5 px-4 sm:px-6">Mô hình AI</th>
+                  <th class="py-3.5 px-4">Nhà cung cấp</th>
+                  <th class="py-3.5 px-4">Ngữ cảnh (Context)</th>
+                  <th class="py-3.5 px-4">Độ trễ Ping</th>
+                  <th class="py-3.5 px-4">Đơn giá tham chiếu</th>
+                  <th class="py-3.5 px-4 text-right">Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-normal text-slate-700" id="modelsTableBody">
+                
+                <!-- GPT-4o -->
+                <tr class="model-row hover:bg-slate-50/70 transition" data-category="reasoning">
+                  <td class="py-3.5 px-4 sm:px-6">
+                    <div class="font-bold text-slate-900 flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      <span>gpt-4o</span>
+                      <span class="text-[10px] font-medium bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded border border-blue-100">Flagship</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">OpenAI GPT-4o Omni (Hỗ trợ Vision)</div>
+                  </td>
+                  <td class="py-3.5 px-4 font-medium text-slate-800">OpenAI</td>
+                  <td class="py-3.5 px-4 font-mono text-slate-600">128K tokens</td>
+                  <td class="py-3.5 px-4">
+                    <span class="font-mono font-semibold text-slate-900">284 ms</span>
+                  </td>
+                  <td class="py-3.5 px-4 text-xs font-mono text-slate-600">
+                    <div>In: $2.5 / 1M</div>
+                    <div>Out: $10.0 / 1M</div>
+                  </td>
+                  <td class="py-3.5 px-4 text-right">
+                    <span class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                      <i data-lucide="check" class="w-3 h-3"></i> Hoạt động ổn định
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Claude 3.5 Sonnet -->
+                <tr class="model-row hover:bg-slate-50/70 transition" data-category="reasoning">
+                  <td class="py-3.5 px-4 sm:px-6">
+                    <div class="font-bold text-slate-900 flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      <span>claude-3-5-sonnet-20241022</span>
+                      <span class="text-[10px] font-medium bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded border border-amber-200">Top Code</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">Anthropic Claude 3.5 Sonnet (v2)</div>
+                  </td>
+                  <td class="py-3.5 px-4 font-medium text-slate-800">Anthropic</td>
+                  <td class="py-3.5 px-4 font-mono text-slate-600">200K tokens</td>
+                  <td class="py-3.5 px-4">
+                    <span class="font-mono font-semibold text-slate-900">312 ms</span>
+                  </td>
+                  <td class="py-3.5 px-4 text-xs font-mono text-slate-600">
+                    <div>In: $3.0 / 1M</div>
+                    <div>Out: $15.0 / 1M</div>
+                  </td>
+                  <td class="py-3.5 px-4 text-right">
+                    <span class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                      <i data-lucide="check" class="w-3 h-3"></i> Hoạt động ổn định
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- DeepSeek-V3 / R1 -->
+                <tr class="model-row hover:bg-slate-50/70 transition" data-category="fast reasoning">
+                  <td class="py-3.5 px-4 sm:px-6">
+                    <div class="font-bold text-slate-900 flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      <span>deepseek-reasoner / deepseek-chat</span>
+                      <span class="text-[10px] font-medium bg-purple-50 text-purple-700 px-1.5 py-0.5 rounded border border-purple-200">R1 / V3</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">Mô hình suy luận toán học và logic tối ưu</div>
+                  </td>
+                  <td class="py-3.5 px-4 font-medium text-slate-800">DeepSeek</td>
+                  <td class="py-3.5 px-4 font-mono text-slate-600">64K tokens</td>
+                  <td class="py-3.5 px-4">
+                    <span class="font-mono font-semibold text-emerald-600">188 ms</span>
+                  </td>
+                  <td class="py-3.5 px-4 text-xs font-mono text-slate-600">
+                    <div>In: $0.14 / 1M</div>
+                    <div>Out: $0.28 / 1M</div>
+                  </td>
+                  <td class="py-3.5 px-4 text-right">
+                    <span class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                      <i data-lucide="zap" class="w-3 h-3"></i> Tốc độ siêu nhanh
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Gemini 1.5 Pro -->
+                <tr class="model-row hover:bg-slate-50/70 transition" data-category="fast">
+                  <td class="py-3.5 px-4 sm:px-6">
+                    <div class="font-bold text-slate-900 flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      <span>gemini-1.5-pro-latest</span>
+                      <span class="text-[10px] font-medium bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded border border-blue-100">2M Window</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">Google DeepMind (Hỗ trợ tài liệu siêu dài & video)</div>
+                  </td>
+                  <td class="py-3.5 px-4 font-medium text-slate-800">Google AI</td>
+                  <td class="py-3.5 px-4 font-mono text-slate-600">2.000K (2M)</td>
+                  <td class="py-3.5 px-4">
+                    <span class="font-mono font-semibold text-slate-900">238 ms</span>
+                  </td>
+                  <td class="py-3.5 px-4 text-xs font-mono text-slate-600">
+                    <div>In: $1.25 / 1M</div>
+                    <div>Out: $5.00 / 1M</div>
+                  </td>
+                  <td class="py-3.5 px-4 text-right">
+                    <span class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                      <i data-lucide="check" class="w-3 h-3"></i> Hoạt động ổn định
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Claude 3.5 Haiku -->
+                <tr class="model-row hover:bg-slate-50/70 transition" data-category="fast">
+                  <td class="py-3.5 px-4 sm:px-6">
+                    <div class="font-bold text-slate-900 flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      <span>claude-3-5-haiku-20241022</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">Anthropic Haiku thế hệ mới nhất</div>
+                  </td>
+                  <td class="py-3.5 px-4 font-medium text-slate-800">Anthropic</td>
+                  <td class="py-3.5 px-4 font-mono text-slate-600">200K tokens</td>
+                  <td class="py-3.5 px-4">
+                    <span class="font-mono font-semibold text-emerald-600">195 ms</span>
+                  </td>
+                  <td class="py-3.5 px-4 text-xs font-mono text-slate-600">
+                    <div>In: $0.80 / 1M</div>
+                    <div>Out: $4.00 / 1M</div>
+                  </td>
+                  <td class="py-3.5 px-4 text-right">
+                    <span class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                      <i data-lucide="check" class="w-3 h-3"></i> Phản hồi tức thì
+                    </span>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="px-4 py-3 bg-slate-50 border-t border-slate-200 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <span>Tất cả mô hình đều gọi được thông qua cùng endpoint tiêu chuẩn: <code class="font-mono bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-800">https://api.onekey.ai/v1</code></span>
+            <button onclick="pingAllModels()" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Làm mới kiểm tra ping
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-24 bg-white" id="pricing">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-xl mx-auto mb-14">
+          <div class="text-xs font-bold uppercase tracking-wider text-blue-600">Bảng Giá Đơn Giản</div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-950 mt-1">Nạp Tiền Theo Nhu Cầu - Dùng Đâu Trừ Đó</h2>
+          <p class="text-sm text-slate-500 mt-2">
+            Số dư tồn tại vĩnh viễn không bao giờ hết hạn. Minh bạch từng token theo đúng giá niêm yết của hãng.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          
+          <!-- Pack 1: Starter -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 flex flex-col justify-between hover:border-slate-300 transition hover:shadow-subtle">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Gói Khởi Điểm</span>
+                <span class="text-[11px] font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Cá nhân</span>
+              </div>
+
+              <h3 class="text-lg font-bold text-slate-900 mt-3">Starter</h3>
+              <p class="text-xs text-slate-500 mt-1">Phù hợp học sinh, sinh viên hoặc người mới bắt đầu làm quen với Chatbox / NextChat.</p>
+
+              <div class="mt-6 pt-5 border-t border-slate-100">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-3xl font-extrabold text-slate-900">50.000</span>
+                  <span class="text-sm font-semibold text-slate-500">VNĐ</span>
+                </div>
+                <div class="mt-1 text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i> Nhận $2.00 USD hạn mức trong Key
+                </div>
+              </div>
+
+              <ul class="mt-6 space-y-3 text-xs text-slate-600">
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-slate-900 shrink-0"></i>
+                  <span>Truy cập đầy đủ toàn bộ danh mục AI</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-slate-900 shrink-0"></i>
+                  <span>Tương thích NextChat, Chatbox, Cherry</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-slate-900 shrink-0"></i>
+                  <span>Cấp mã tự động qua VietQR trong 10 giây</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-slate-900 shrink-0"></i>
+                  <span>Không bao giờ bị hết hạn số dư</span>
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="openBuyModal('50k')" class="mt-8 w-full py-2.5 rounded-xl border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs transition">
+              Chọn Gói Này
+            </button>
+          </div>
+
+          <!-- Pack 2: Developer (Featured) -->
+          <div class="rounded-2xl border-2 border-slate-950 bg-[#0f172a] text-white p-6 sm:p-7 flex flex-col justify-between relative shadow-float transform md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+              Được lựa chọn nhiều nhất
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Gói Lập Trình</span>
+                <span class="text-[11px] font-semibold bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded border border-blue-400/30">Tặng +20.000đ</span>
+              </div>
+
+              <h3 class="text-lg font-bold text-white mt-3">Developer</h3>
+              <p class="text-xs text-slate-400 mt-1">Dành riêng cho Lập trình viên sử dụng Cursor, Cline, VS Code hoặc công việc nghiên cứu chuyên sâu.</p>
+
+              <div class="mt-6 pt-5 border-t border-slate-800">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-3xl font-extrabold text-white">200.000</span>
+                  <span class="text-sm font-semibold text-slate-400">VNĐ</span>
+                </div>
+                <div class="mt-1 text-xs text-emerald-400 font-semibold flex items-center gap-1">
+                  <i data-lucide="gift" class="w-3.5 h-3.5"></i> Nhận $8.80 USD hạn mức (Đã cộng bonus)
+                </div>
+              </div>
+
+              <ul class="mt-6 space-y-3 text-xs text-slate-300">
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0"></i>
+                  <span>Tối ưu độ trễ cho Cursor AI & Cline mở rộng</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0"></i>
+                  <span>Ưu tiên băng thông đường truyền cao</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0"></i>
+                  <span>Theo dõi lịch sử chi phí và token realtime</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0"></i>
+                  <span>Hỗ trợ cấu hình kỹ thuật từ xa qua Ultraview</span>
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="openBuyModal('200k')" class="mt-8 w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition shadow-sm">
+              Nạp Gói Developer (200k)
+            </button>
+          </div>
+
+          <!-- Pack 3: Pro / Team -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 flex flex-col justify-between hover:border-slate-300 transition hover:shadow-subtle">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Gói Dự Án / Nhóm</span>
+                <span class="text-[11px] font-semibold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded border border-emerald-200">Tặng +75.000đ</span>
+              </div>
+
+              <h3 class="text-lg font-bold text-slate-900 mt-3">Pro & Team</h3>
+              <p class="text-xs text-slate-500 mt-1">Dành cho startup, nhóm làm việc tự động hóa nội dung hoặc chạy ứng dụng SaaS sản xuất.</p>
+
+              <div class="mt-6 pt-5 border-t border-slate-100">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-3xl font-extrabold text-slate-900">500.000</span>
+                  <span class="text-sm font-semibold text-slate-500">VNĐ</span>
+                </div>
+                <div class="mt-1 text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                  <i data-lucide="gift" class="w-3.5 h-3.5"></i> Nhận $23.00 USD hạn mức (Đã cộng bonus)
+                </div>
+              </div>
+
+              <ul class="mt-6 space-y-3 text-xs text-slate-600">
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-slate-900 shrink-0"></i>
+                  <span>Không giới hạn số lượt request/phút (No Rate Limit)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-slate-900 shrink-0"></i>
+                  <span>Hỗ trợ phân bổ nhiều Sub-Keys cho từng thành viên</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-slate-900 shrink-0"></i>
+                  <span>Hỗ trợ xuất hóa đơn điện tử VAT cho công ty</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-slate-900 shrink-0"></i>
+                  <span>Kênh hỗ trợ ưu tiên trực tiếp qua Telegram/Zalo</span>
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="openBuyModal('500k')" class="mt-8 w-full py-2.5 rounded-xl border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs transition">
+              Chọn Gói Pro
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Custom Recharge Option -->
+        <div class="mt-8 p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+              <i data-lucide="sliders" class="w-4 h-4"></i>
+            </div>
+            <span>Bạn muốn nạp số tiền khác hoặc tích hợp API cho hệ thống doanh nghiệp lớn?</span>
+          </div>
+          <button onclick="openBuyModal('custom')" class="shrink-0 font-bold text-blue-600 hover:text-blue-700 hover:underline">
+            Nhập số tiền tùy chỉnh &rarr;
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-20 bg-slate-50 border-y border-slate-200" id="tester">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <div class="text-xs font-bold uppercase tracking-wider text-blue-600">Trải Nghiệm Thực Tế</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-950 mt-1">Kiểm Tra Trực Tiếp Tốc Độ & Phản Hồi</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Gửi thử nghiệm mẫu prompt để quan sát độ trễ, hiệu ứng stream text và mức tiêu hao token.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-card overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+          
+          <!-- Controls (Left Side) -->
+          <div class="lg:col-span-5 p-6 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col justify-between bg-white">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Mô hình thử nghiệm</label>
+                <select id="playgroundModel" class="w-full text-xs font-semibold px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-800 focus:outline-none focus:border-blue-600">
+                  <option value="gpt-4o">gpt-4o (OpenAI)</option>
+                  <option value="claude-3-5-sonnet">claude-3-5-sonnet (Anthropic)</option>
+                  <option value="deepseek-chat">deepseek-chat (DeepSeek V3)</option>
+                  <option value="gemini-1.5-pro">gemini-1.5-pro (Google)</option>
+                </select>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Khóa API Key</label>
+                  <span class="text-[11px] text-blue-600 font-medium cursor-pointer hover:underline" onclick="fillDemoKey()">Dùng Key Demo</span>
+                </div>
+                <input type="text" id="playgroundKey" value="sk-onekey-demo-free-preview" placeholder="sk-onekey-..." class="w-full font-mono text-xs px-3 py-2 rounded-xl border border-slate-300 bg-slate-50 text-slate-700 focus:outline-none focus:border-blue-600">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Câu lệnh (Prompt)</label>
+                <textarea id="playgroundPrompt" rows="4" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 text-slate-800 resize-none">Hãy tóm tắt ngắn gọn 3 lợi thế cốt lõi của việc dùng API Key tổng hợp so với việc mua tài khoản riêng lẻ.</textarea>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-3">
+              <button id="playgroundBtn" onclick="runPlaygroundTest()" class="w-full py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center gap-2 transition active:scale-[0.98]">
+                <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+                <span>Gửi Thử Nghiệm API</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Response Window (Right Side) -->
+          <div class="lg:col-span-7 p-6 bg-[#0f172a] text-slate-200 flex flex-col justify-between font-mono">
+            <div>
+              <!-- Terminal Header -->
+              <div class="flex items-center justify-between pb-3 border-b border-slate-800 text-xs text-slate-400">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                  <span class="ml-2 font-mono text-[11px] text-slate-400">Response Stream (POST /v1/chat/completions)</span>
+                </div>
+                <span id="playgroundStatus" class="text-emerald-400 font-sans text-[11px] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Sẵn sàng
+                </span>
+              </div>
+
+              <!-- Output Container -->
+              <div class="mt-4 min-h-[160px] max-h-[220px] overflow-y-auto text-xs leading-relaxed text-slate-300 font-sans pr-2" id="playgroundOutput">
+                Nhấn <strong>"Gửi Thử Nghiệm API"</strong> để xem luồng phản hồi streaming từ hạ tầng OneKey AI.
+              </div>
+            </div>
+
+            <!-- Execution Telemetry -->
+            <div class="mt-6 pt-3 border-t border-slate-800 grid grid-cols-3 gap-2 text-center text-xs">
+              <div class="p-2 rounded-lg bg-slate-900/80 border border-slate-800">
+                <div class="text-[10px] text-slate-400 uppercase">Latency TTFT</div>
+                <div class="font-bold text-slate-200 mt-0.5" id="telemetryLatency">-- ms</div>
+              </div>
+              <div class="p-2 rounded-lg bg-slate-900/80 border border-slate-800">
+                <div class="text-[10px] text-slate-400 uppercase">Tokens Sử Dụng</div>
+                <div class="font-bold text-slate-200 mt-0.5" id="telemetryTokens">-- tok</div>
+              </div>
+              <div class="p-2 rounded-lg bg-slate-900/80 border border-slate-800">
+                <div class="text-[10px] text-slate-400 uppercase">Ước Tính Chi Phí</div>
+                <div class="font-bold text-emerald-400 mt-0.5" id="telemetryCost">0.00000$</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-20 bg-white" id="apps">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-xl mx-auto mb-12">
+          <div class="text-xs font-bold uppercase tracking-wider text-blue-600">Tương Thích Tuyệt Đối</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-950 mt-1">Kết Nối Với Mọi Công Cụ Bạn Đang Dùng</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Vì tuân thủ 100% chuẩn OpenAI API, bất kỳ phần mềm nào hỗ trợ nhập Base URL đều dùng được ngay.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+          
+          <!-- App 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-center shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-2.5 font-bold">
+              <i data-lucide="message-square" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-slate-900 text-xs">NextChat</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">Web / Desktop</div>
+          </div>
+
+          <!-- App 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-center shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-2.5 font-bold">
+              <i data-lucide="layout" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-slate-900 text-xs">Chatbox AI</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">Win / Mac / iOS</div>
+          </div>
+
+          <!-- App 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-center shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center mx-auto mb-2.5 font-bold">
+              <i data-lucide="code" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-slate-900 text-xs">Cursor IDE</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">AI Code Editor</div>
+          </div>
+
+          <!-- App 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-center shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto mb-2.5 font-bold">
+              <i data-lucide="terminal" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-slate-900 text-xs">Cline / RooCode</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">VS Code Extension</div>
+          </div>
+
+          <!-- App 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-center shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mx-auto mb-2.5 font-bold">
+              <i data-lucide="server" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-slate-900 text-xs">LibreChat</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">Self-hosted UI</div>
+          </div>
+
+          <!-- App 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition text-center shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center mx-auto mb-2.5 font-bold">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-slate-900 text-xs">Python / Node.js</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">Official SDKs</div>
+          </div>
+
+        </div>
+
+        <!-- 1-Click Fast Configuration Box -->
+        <div class="mt-8 p-5 rounded-2xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-5">
+          <div>
+            <div class="text-xs font-semibold text-blue-400">Cách điền thông số kết nối vào ứng dụng của bạn:</div>
+            <div class="mt-1.5 flex flex-wrap items-center gap-3 text-xs font-mono">
+              <span class="text-slate-400">Base URL:</span>
+              <span class="bg-slate-800 text-emerald-400 px-2.5 py-1 rounded border border-slate-700 select-all font-semibold">https://api.onekey.ai/v1</span>
+              <span class="text-slate-400 ml-2">API Key:</span>
+              <span class="bg-slate-800 text-slate-200 px-2.5 py-1 rounded border border-slate-700 select-all font-semibold">sk-onekey-...</span>
+            </div>
+          </div>
+
+          <button onclick="copyText('https://api.onekey.ai/v1')" class="shrink-0 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold flex items-center gap-2 transition border border-slate-700">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Sao chép Base URL</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-20 bg-slate-50 border-t border-slate-200" id="faq">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center mb-10">
+          <div class="text-xs font-bold uppercase tracking-wider text-blue-600">Hỗ Trợ & Giải Đáp</div>
+          <h2 class="text-2xl font-bold text-slate-950 mt-1">Câu Hỏi Thường Gặp</h2>
+          <p class="text-xs text-slate-500 mt-1">Mọi thông tin bạn cần biết trước khi nạp tiền và sử dụng.</p>
+        </div>
+
+        <div class="space-y-3">
+          
+          <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-2xs">
+            <button onclick="toggleFaq('faq-1')" class="w-full px-5 py-4 text-left font-semibold text-slate-900 flex justify-between items-center hover:bg-slate-50/70 transition text-sm">
+              <span>Hệ thống trừ tiền như thế nào? Có phát sinh chi phí ngầm không?</span>
+              <i id="faq-1-icon" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+            </button>
+            <div id="faq-1" class="hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              Hoàn toàn không có phí duy trì hàng tháng. Mỗi khi bạn đặt câu hỏi hoặc chạy mã lệnh, hệ thống tính toán chính xác số lượng token đầu vào (prompt) và token đầu ra (completion) theo đúng bảng giá gốc từ OpenAI/Anthropic/DeepSeek và trừ thẳng vào số dư USD trong Key của bạn.
+            </div>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-2xs">
+            <button onclick="toggleFaq('faq-2')" class="w-full px-5 py-4 text-left font-semibold text-slate-900 flex justify-between items-center hover:bg-slate-50/70 transition text-sm">
+              <span>Nếu tôi nạp 100.000đ hay 200.000đ thì dùng được trong bao lâu?</span>
+              <i id="faq-2-icon" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+            </button>
+            <div id="faq-2" class="hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              Với nhu cầu hỏi đáp thông thường (viết bài, dịch tài liệu, giải quyết bài toán) dùng mô hình GPT-4o hoặc DeepSeek, 100.000đ có thể đủ cho khoảng 1.500 đến 3.000 câu hỏi dài. Vì số dư không có hạn sử dụng, bạn có thể dùng trong 2-3 tháng hoặc lâu hơn tùy tần suất công việc.
+            </div>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-2xs">
+            <button onclick="toggleFaq('faq-3')" class="w-full px-5 py-4 text-left font-semibold text-slate-900 flex justify-between items-center hover:bg-slate-50/70 transition text-sm">
+              <span>Tôi là người dùng phổ thông, chưa từng dùng API Key thì cần chuẩn bị gì?</span>
+              <i id="faq-3-icon" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+            </button>
+            <div id="faq-3" class="hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              Bạn chỉ cần tải phần mềm giao diện miễn phí có tiếng Việt như <strong>Chatbox AI</strong> hoặc <strong>NextChat</strong> về máy tính/điện thoại. Sau đó vào Cài đặt &rarr; chọn Nhà cung cấp là OpenAI &rarr; điền Base URL: <code class="font-mono text-slate-800 bg-slate-100 px-1 py-0.5 rounded">https://api.onekey.ai/v1</code> và dán API Key được cấp là xong.
+            </div>
+          </div>
+
+          <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-2xs">
+            <button onclick="toggleFaq('faq-4')" class="w-full px-5 py-4 text-left font-semibold text-slate-900 flex justify-between items-center hover:bg-slate-50/70 transition text-sm">
+              <span>Chính sách bảo mật dữ liệu và quyền riêng tư ra sao?</span>
+              <i id="faq-4-icon" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+            </button>
+            <div id="faq-4" class="hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              OneKey AI áp dụng chính sách <strong>Zero Data Retention</strong>. Mọi câu hỏi và dữ liệu truyền qua cổng API đều được mã hóa TLS 1.3 và chuyển thẳng đến nhà cung cấp mô hình chính thức, không lưu trữ nội dung hội thoại, không dùng để huấn luyện dữ liệu.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-10 text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-lg bg-slate-950 text-white flex items-center justify-center font-bold text-xs">
+            <i data-lucide="key" class="w-3.5 h-3.5 text-blue-400"></i>
+          </div>
+          <div>
+            <div class="font-bold text-slate-900 text-sm">OneKey AI — Vietnam Hub</div>
+            <div class="text-[11px] text-slate-500">Cổng phân phối & định tuyến API Key AI chuyên nghiệp</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-6 font-medium text-slate-600">
+          <a href="#models" class="hover:text-slate-950">Mô hình AI</a>
+          <a href="#pricing" class="hover:text-slate-950">Bảng giá</a>
+          <a href="#tester" class="hover:text-slate-950">Thử nghiệm</a>
+          <a href="https://zalo.me" target="_blank" class="hover:text-blue-600 flex items-center gap-1">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-blue-600"></i> Hỗ trợ Zalo: 0988.xxx.xxx
+          </a>
+        </div>
+
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-400 text-[11px]">
+        <div>© 2026 OneKey AI Platform. Bản quyền thuộc về OneKey AI Vietnam.</div>
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center gap-1 text-emerald-600">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> API Status: All Systems Operational
+          </span>
+          <a href="#" class="hover:underline">Điều khoản dịch vụ</a>
+          <a href="#" class="hover:underline">Chính sách bảo mật</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="balanceModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-float border border-slate-200 relative animate-in fade-in zoom-in-95 duration-150">
+      
+      <button onclick="closeCheckBalanceModal()" class="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="flex items-center gap-2.5 mb-4">
+        <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-slate-900">Tra Cứu Hạn Mức & Số Dư API Key</h3>
+          <p class="text-[11px] text-slate-500">Nhập mã Key của bạn để kiểm tra tình trạng tức thì</p>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Mã khóa API Key:</label>
+          <div class="relative">
+            <input type="text" id="checkKeyInput" placeholder="sk-onekey-..." class="w-full font-mono text-xs pl-3 pr-20 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600">
+            <button onclick="checkBalanceAction()" class="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition">
+              Tra Cứu
+            </button>
+          </div>
+        </div>
+
+        <!-- Simulated Result Box -->
+        <div id="balanceResultBox" class="hidden mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2.5">
+          <div class="flex justify-between items-center pb-2 border-b border-slate-200">
+            <span class="text-slate-500">Trạng thái:</span>
+            <span class="inline-flex items-center gap-1 text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Đang hoạt động
+            </span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-500">Số dư khả dụng:</span>
+            <span class="font-bold text-slate-900 font-mono text-sm" id="resultBalance">$7.42 USD</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-500">Hạn mức ban đầu:</span>
+            <span class="font-mono text-slate-700" id="resultQuota">$8.80 USD</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-500">Tổng tokens đã gọi:</span>
+            <span class="font-mono text-slate-700">142.850 tokens</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="buyModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-float border border-slate-200 relative animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Close button -->
+      <button onclick="closeBuyModal()" class="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 pb-4 border-b border-slate-100">
+        <div class="w-9 h-9 rounded-xl bg-slate-950 text-white flex items-center justify-center font-bold text-sm">
+          <i data-lucide="qr-code" class="w-5 h-5 text-blue-400"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-slate-950">Nạp Tiền Nhận API Key Tự Động</h3>
+          <p class="text-xs text-slate-500">Quét mã VietQR từ mọi ứng dụng ngân hàng hoặc ví MoMo</p>
+        </div>
+      </div>
+
+      <!-- Package Selection Inside Modal -->
+      <div class="mt-4">
+        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">Chọn gói hạn mức:</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" onclick="selectModalPkg('50k')" id="modal-btn-50k" class="modal-selector p-2.5 rounded-xl border text-center transition">
+            <div class="text-xs font-bold">50.000đ</div>
+            <div class="text-[10px] text-slate-500">$2.00 USD</div>
+          </button>
+          <button type="button" onclick="selectModalPkg('200k')" id="modal-btn-200k" class="modal-selector p-2.5 rounded-xl border text-center transition">
+            <div class="text-xs font-bold text-blue-600">200.000đ</div>
+            <div class="text-[10px] text-blue-700 font-medium">$8.80 USD</div>
+          </button>
+          <button type="button" onclick="selectModalPkg('500k')" id="modal-btn-500k" class="modal-selector p-2.5 rounded-xl border text-center transition">
+            <div class="text-xs font-bold">500.000đ</div>
+            <div class="text-[10px] text-slate-500">$23.00 USD</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Email for backup -->
+      <div class="mt-3.5">
+        <label class="block text-xs font-semibold text-slate-700 mb-1">Email nhận bản sao lưu API Key:</label>
+        <input type="email" id="checkoutEmail" placeholder="developer@gmail.com" class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600">
+      </div>
+
+      <!-- QR Code & Transfer Details Card -->
+      <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center gap-4">
+        
+        <div class="shrink-0 bg-white p-2 rounded-xl border border-slate-200 shadow-2xs text-center">
+          <img id="qrImageElement" src="https://placehold.co/140x140/f8fafc/0f172a?text=VietQR+200.000d" alt="VietQR" class="w-32 h-32 object-contain rounded-lg">
+          <div class="mt-1 text-[10px] font-mono text-emerald-600 font-semibold">Tự động khớp lệnh 24/7</div>
+        </div>
+
+        <div class="w-full text-xs space-y-2">
+          <div class="flex justify-between items-center bg-white px-3 py-1.5 rounded-lg border border-slate-200">
+            <span class="text-slate-500">Ngân hàng:</span>
+            <span class="font-bold text-slate-900">MB Bank (Quân Đội)</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-white px-3 py-1.5 rounded-lg border border-slate-200">
+            <span class="text-slate-500">Số tài khoản:</span>
+            <div class="flex items-center gap-1 font-mono font-bold text-slate-900">
+              <span>99988886666</span>
+              <button onclick="copyText('99988886666')" class="text-slate-400 hover:text-slate-700 p-0.5"><i data-lucide="copy" class="w-3 h-3"></i></button>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center bg-white px-3 py-1.5 rounded-lg border border-slate-200">
+            <span class="text-slate-500">Số tiền:</span>
+            <span id="modalAmountDisplay" class="font-bold text-blue-600 font-mono">200.000 VNĐ</span>
+          </div>
+
+          <div class="flex justify-between items-center bg-white px-3 py-1.5 rounded-lg border border-slate-200">
+            <span class="text-slate-500">Nội dung CK:</span>
+            <div class="flex items-center gap-1">
+              <span id="modalMemoDisplay" class="font-mono font-bold text-slate-900 bg-yellow-50 px-1 rounded border border-yellow-200">ONEKEY 8492</span>
+              <button onclick="copyText('ONEKEY 8492')" class="text-blue-600 hover:text-blue-800 p-0.5"><i data-lucide="copy" class="w-3 h-3"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Confirmation Button -->
+      <div class="mt-5">
+        <button id="checkPaymentBtn" onclick="simulatePaymentApproval()" class="w-full py-3 rounded-xl bg-slate-950 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-2">
+          <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+          <span>Tôi Đã Chuyển Khoản &rarr; Xuất Khóa API Key</span>
+        </button>
+      </div>
+
+      <!-- Key Revealed Container -->
+      <div id="keyCreatedContainer" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+        <div class="flex items-center gap-2 text-xs font-bold text-emerald-900">
+          <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+          <span>Thanh toán thành công! API Key của bạn đã sẵn sàng:</span>
+        </div>
+        
+        <div class="mt-2.5 flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-emerald-300">
+          <span class="font-mono text-xs font-semibold text-slate-900 select-all" id="generatedKeyText">sk-onekey-live-992a7f8e4c190bb3</span>
+          <button onclick="copyText(document.getElementById('generatedKeyText').innerText)" class="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1">
+            <i data-lucide="copy" class="w-3 h-3"></i>
+            <span>Copy Key</span>
+          </button>
+        </div>
+
+        <div class="mt-2 text-[11px] text-emerald-800 flex items-center justify-between">
+          <span>Hạn mức khả dụng: <strong class="font-mono" id="grantedQuotaDisplay">$8.80 USD</strong></span>
+          <span>Base URL: <code class="font-mono bg-white px-1 py-0.5 rounded border border-emerald-200">https://api.onekey.ai/v1</code></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-950 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-float hidden items-center gap-2 transition-all">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMsg">Đã sao chép!</span>
+  </div>
+
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+    // Mobile Navigation Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+    document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+    // FAQ Toggle
+    function toggleFaq(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // Filter Models
+    function filterModels(category, btnElement) {
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('bg-white', 'text-slate-900', 'shadow-2xs');
+        btn.classList.add('hover:text-slate-900');
+      });
+      btnElement.classList.add('bg-white', 'text-slate-900', 'shadow-2xs');
+
+      const rows = document.querySelectorAll('.model-row');
+      rows.forEach(row => {
+        const cat = row.getAttribute('data-category');
+        if (category === 'all' || cat.includes(category)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // Ping Simulator
+    function pingAllModels() {
+      showToast("Đang gửi gói tin benchmark đến cụm máy chủ...");
+      setTimeout(() => {
+        showToast("Tất cả mô hình đang hoạt động với độ trễ tối ưu (<350ms)");
+      }, 700);
+    }
+
+    // Safe Clipboard Copy Helper
+    function copyText(text) {
+      const input = document.createElement('textarea');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      try {
+        document.execCommand('copy');
+        showToast("Đã sao chép: " + text);
+      } catch (err) {
+        showToast("Không thể sao chép");
+      }
+      document.body.removeChild(input);
+    }
+
+    // Toast function
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = message;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 2500);
+    }
+
+    // Playground Interactive Simulation
+    let isStreaming = false;
+    function fillDemoKey() {
+      document.getElementById('playgroundKey').value = 'sk-onekey-demo-free-preview';
+      showToast("Đã nạp Key dùng thử miễn phí");
+    }
+
+    function runPlaygroundTest() {
+      if (isStreaming) return;
+      
+      const model = document.getElementById('playgroundModel').value;
+      const prompt = document.getElementById('playgroundPrompt').value.trim();
+      const output = document.getElementById('playgroundOutput');
+      const status = document.getElementById('playgroundStatus');
+      const btn = document.getElementById('playgroundBtn');
+
+      if (!prompt) {
+        showToast("Vui lòng nhập câu lệnh prompt");
+        return;
+      }
+
+      isStreaming = true;
+      btn.disabled = true;
+      btn.classList.add('opacity-70');
+      status.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping"></span> Đang nhận stream...`;
+      output.innerHTML = '';
+      
+      document.getElementById('telemetryLatency').innerText = Math.floor(Math.random() * (320 - 180) + 180) + ' ms';
+      document.getElementById('telemetryTokens').innerText = '0 tok';
+      document.getElementById('telemetryCost').innerText = 'Tính toán...';
+
+      const simulatedResponse = `3 lợi thế vượt trội khi dùng API Key tổng hợp tại OneKey AI:
+
+1. Đồng Nhất Hạ Tầng: Bạn chỉ cần cấu hình duy nhất một Base URL (https://api.onekey.ai/v1). Dễ dàng chuyển đổi linh hoạt giữa GPT-4o, Claude 3.5 Sonnet và DeepSeek mà không cần tạo 3 tài khoản ở 3 hãng khác nhau.
+
+2. Tiết Kiệm Tối Đa & Không Hết Hạn: Không phải trả cố định 20$/tháng cho ChatGPT Plus hay Claude Pro. Bạn chỉ trả tiền cho đúng số token thực tế sử dụng; số dư nằm vĩnh viễn trong Key.
+
+3. Thanh Toán Nội Địa Đơn Giản: Không cần thẻ tín dụng Visa/Mastercard quốc tế, nạp nhanh bằng quét mã VietQR tự động 24/7.`;
+
+      let charIndex = 0;
+      const interval = setInterval(() => {
+        if (charIndex < simulatedResponse.length) {
+          output.innerHTML = simulatedResponse.substring(0, charIndex + 1).replace(/\n/g, '<br>');
+          charIndex += 3;
+          document.getElementById('telemetryTokens').innerText = Math.floor(charIndex / 4) + ' tok';
+        } else {
+          clearInterval(interval);
+          isStreaming = false;
+          btn.disabled = false;
+          btn.classList.remove('opacity-70');
+          status.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Hoàn tất (200 OK)`;
+          document.getElementById('telemetryTokens').innerText = '148 tok';
+          document.getElementById('telemetryCost').innerText = '0.00037$';
+          showToast("Hoàn tất yêu cầu thành công!");
+        }
+      }, 15);
+    }
+
+    // Balance Checker Modal Logic
+    function openCheckBalanceModal() {
+      document.getElementById('balanceModal').classList.remove('hidden');
+      document.getElementById('balanceModal').classList.add('flex');
+    }
+    function closeCheckBalanceModal() {
+      document.getElementById('balanceModal').classList.add('hidden');
+      document.getElementById('balanceModal').classList.remove('flex');
+    }
+    function checkBalanceAction() {
+      const key = document.getElementById('checkKeyInput').value.trim();
+      if (!key) {
+        showToast("Vui lòng nhập API Key để kiểm tra");
+        return;
+      }
+      const res = document.getElementById('balanceResultBox');
+      res.classList.remove('hidden');
+      showToast("Đã tải thông tin số dư");
+    }
+
+    // Buy Modal Logic
+    const pkgData = {
+      '50k': { amount: '50.000 VNĐ', quota: '$2.00 USD', qrLabel: 'VietQR+50.000d' },
+      '200k': { amount: '200.000 VNĐ', quota: '$8.80 USD', qrLabel: 'VietQR+200.000d' },
+      '500k': { amount: '500.000 VNĐ', quota: '$23.00 USD', qrLabel: 'VietQR+500.000d' },
+      'custom': { amount: 'Tùy chọn', quota: 'Tương ứng', qrLabel: 'VietQR+Custom' }
+    };
+
+    let selectedPackage = '200k';
+
+    function openBuyModal(pkgKey = '200k') {
+      document.getElementById('buyModal').classList.remove('hidden');
+      document.getElementById('buyModal').classList.add('flex');
+      document.getElementById('keyCreatedContainer').classList.add('hidden');
+      selectModalPkg(pkgKey);
+    }
+
+    function closeBuyModal() {
+      document.getElementById('buyModal').classList.add('hidden');
+      document.getElementById('buyModal').classList.remove('flex');
+    }
+
+    function selectModalPkg(key) {
+      selectedPackage = key;
+      const data = pkgData[key] || pkgData['200k'];
+
+      ['50k', '200k', '500k'].forEach(k => {
+        const btn = document.getElementById('modal-btn-' + k);
+        if (!btn) return;
+        if (k === key) {
+          btn.className = 'modal-selector p-2.5 rounded-xl border border-blue-600 bg-blue-50/70 text-center transition font-semibold';
+        } else {
+          btn.className = 'modal-selector p-2.5 rounded-xl border border-slate-200 bg-white text-center transition hover:border-slate-300';
+        }
+      });
+
+      document.getElementById('modalAmountDisplay').innerText = data.amount;
+      document.getElementById('grantedQuotaDisplay').innerText = data.quota;
+      document.getElementById('qrImageElement').src = `https://placehold.co/140x140/f8fafc/0f172a?text=${encodeURIComponent(data.qrLabel)}`;
+    }
+
+    function simulatePaymentApproval() {
+      const btn = document.getElementById('checkPaymentBtn');
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block animate-spin mr-2">⏳</span> Đang kiểm tra giao dịch với ngân hàng...`;
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Tôi Đã Chuyển Khoản &rarr; Xuất Khóa API Key</span>`;
+        lucide.createIcons();
+
+        // Generate dynamic key string
+        const randomHex = Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10);
+        document.getElementById('generatedKeyText').innerText = `sk-onekey-live-${randomHex}`;
+        document.getElementById('keyCreatedContainer').classList.remove('hidden');
+        showToast("Đã xác thực thanh toán thành công!");
+      }, 1200);
+    }
+
+    // Close Modals on Outer Click
+    window.addEventListener('click', (e) => {
+      const buyModal = document.getElementById('buyModal');
+      const balModal = document.getElementById('balanceModal');
+      if (e.target === buyModal) closeBuyModal();
+      if (e.target === balModal) closeCheckBalanceModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeBuyModal();
+        closeCheckBalanceModal();
+      }
+    });
+  </script>
+</body>
+</html>
