@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký tài khoản — CherismAI</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../public/css/home.css">
+  <link rel="stylesheet" href="../../public/css/auth.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="auth-page">
+
+  <!-- AUTH HEADER -->
+  <header class="auth-header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon-box">
+          <i class="fa-solid fa-shapes"></i>
+        </div>
+        Cherism<span>AI</span>
+      </a>
+      <a href="../index.html" class="btn btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Về trang chủ
+      </a>
+    </div>
+  </header>
+
+  <!-- AUTH BODY -->
+  <main class="auth-container">
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <h2>Tạo tài khoản mới</h2>
+        <p>Đăng ký thành viên để bắt đầu sử dụng các dịch vụ AI</p>
+      </div>
+
+      <!-- Thông báo trạng thái -->
+      <div id="authAlert" class="form-alert"></div>
+
+      <form id="registerForm" novalidate>
+        <!-- Tên đăng nhập -->
+        <div class="form-group">
+          <label class="form-label" for="usernameInput">Tên đăng nhập</label>
+          <div class="form-input-wrap">
+            <i class="fa-regular fa-user form-input-icon"></i>
+            <input type="text" id="usernameInput" class="form-input" placeholder="Từ 3 ký tự (chữ hoặc số)..." required autocomplete="username">
+          </div>
+          <div id="usernameError" class="form-error-msg">Tên đăng nhập phải có ít nhất 3 ký tự.</div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="emailInput">Địa chỉ Email</label>
+          <div class="form-input-wrap">
+            <i class="fa-regular fa-envelope form-input-icon"></i>
+            <input type="email" id="emailInput" class="form-input" placeholder="Ví dụ: ban@gmail.com..." required autocomplete="email">
+          </div>
+          <div id="emailError" class="form-error-msg">Địa chỉ email không hợp lệ.</div>
+        </div>
+
+        <!-- Mật khẩu -->
+        <div class="form-group">
+          <label class="form-label" for="passwordInput">Mật khẩu</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-lock form-input-icon"></i>
+            <input type="password" id="passwordInput" class="form-input" placeholder="Tối thiểu 6 ký tự..." required autocomplete="new-password">
+            <button type="button" class="password-toggle-btn" id="togglePasswordBtn" title="Hiện/ẩn mật khẩu">
+              <i class="fa-regular fa-eye" id="togglePasswordIcon"></i>
+            </button>
+          </div>
+          <div id="passwordError" class="form-error-msg">Mật khẩu phải có ít nhất 6 ký tự.</div>
+        </div>
+
+        <!-- Xác nhận mật khẩu -->
+        <div class="form-group">
+          <label class="form-label" for="confirmPasswordInput">Xác nhận mật khẩu</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-check-double form-input-icon"></i>
+            <input type="password" id="confirmPasswordInput" class="form-input" placeholder="Nhập lại mật khẩu..." required autocomplete="new-password">
+          </div>
+          <div id="confirmPasswordError" class="form-error-msg">Mật khẩu xác nhận không khớp.</div>
+        </div>
+
+        <!-- Điều khoản -->
+        <div class="form-group">
+          <label class="form-checkbox" style="align-items: flex-start;">
+            <input type="checkbox" id="termsCheckbox" checked style="margin-top: 3px;">
+            <span>Tôi đồng ý với <a href="../policy/term.html" target="_blank" style="color: var(--primary-color);">Điều khoản sử dụng</a> và <a href="../policy/privacy.html" target="_blank" style="color: var(--primary-color);">Chính sách bảo mật</a> của CherismAI</span>
+          </label>
+          <div id="termsError" class="form-error-msg">Bạn cần đồng ý với điều khoản sử dụng.</div>
+        </div>
+
+        <!-- Nút Đăng ký -->
+        <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-user-plus"></i> Đăng ký tài khoản
+        </button>
+
+        <!-- Chuyển sang đăng nhập -->
+        <div class="auth-footer-text">
+          Đã có tài khoản? <a href="login.html" id="toLoginLink">Đăng nhập ngay</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- AUTH FOOTER -->
+  <footer class="footer" style="padding: 18px 0; background: #ffffff; border-top: 1px solid var(--border-color);">
+    <div class="container text-center" style="text-align: center; color: var(--text-muted); font-size: 12px;">
+      &copy; 2026 CherismAI — Nguyễn Anh Quân. Đồ án 2: Lập trình Website.
+    </div>
+  </footer>
+
+  <!-- SCRIPTS (TÁCH RIÊNG HOÀN TOÀN) -->
+  <script src="../../public/js/load_data.js"></script>
+  <script src="../../public/js/auth.js"></script>
+</body>
+
+</html>

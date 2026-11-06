@@ -1,37 +1,26 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="RaukXfRNKrOQbVO79UYp">
-    <mxGraphModel dx="2146" dy="1304" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1493" dy="907" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="cls_user" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#F8F9FA;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Abstract&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- userId: String&lt;br&gt;- fullName: String&lt;br&gt;- email: String&lt;br&gt;- phone: String&lt;br&gt;- password: String&lt;br&gt;- role: String&lt;br&gt;- status: String&lt;br&gt;- createdAt: Date&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ login(): Boolean&lt;br&gt;+ updateProfile(): Void&lt;/p&gt;" vertex="1">
-          <mxGeometry height="185" width="190" x="50" y="50" as="geometry" />
+          <mxGeometry height="210" width="190" x="50" y="500" as="geometry" />
         </mxCell>
         <mxCell id="cls_cust" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Customer&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- address: String&lt;br&gt;- totalSpent: Double&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ viewOrderHistory()&lt;br&gt;+ requestWarranty()&lt;/p&gt;" vertex="1">
-          <mxGeometry height="110" width="170" x="50" y="300" as="geometry" />
+          <mxGeometry height="110" width="170" x="60" y="310" as="geometry" />
         </mxCell>
         <mxCell id="cls_staff" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Staff&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- department: String&lt;br&gt;- assignedTasks: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ processOrder()&lt;br&gt;+ createImportBill()&lt;/p&gt;" vertex="1">
-          <mxGeometry height="110" width="170" x="50" y="470" as="geometry" />
-        </mxCell>
-        <mxCell id="edge_gen_cust" edge="1" parent="1" source="cls_cust" style="endArrow=block;endFill=0;endSize=14;html=1;rounded=0;strokeWidth=1.5;strokeColor=#000000;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="cls_user">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="edge_gen_staff" edge="1" parent="1" source="cls_staff" style="endArrow=block;endFill=0;endSize=14;html=1;rounded=0;strokeWidth=1.5;strokeColor=#000000;exitX=0;exitY=0.5;entryX=0;entryY=0.8;edgeStyle=orthogonalEdgeStyle;" target="cls_user">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="20" y="525" />
-              <mxPoint x="20" y="198" />
-            </Array>
-          </mxGeometry>
+          <mxGeometry height="110" width="170" x="60" y="790" as="geometry" />
         </mxCell>
         <mxCell id="cls_order" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Order&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- orderId: String&lt;br&gt;- userId: String&lt;br&gt;- customerName: String&lt;br&gt;- customerEmail: String&lt;br&gt;- customerPhone: String&lt;br&gt;- totalAmount: Double&lt;br&gt;- paymentMethod: String&lt;br&gt;- orderStatus: String&lt;br&gt;- orderDate: Date&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ createOrder(): Void&lt;br&gt;+ updateStatus(): Void&lt;/p&gt;" vertex="1">
-          <mxGeometry height="190" width="190" x="320" y="270" as="geometry" />
+          <mxGeometry height="210" width="190" x="320" y="260" as="geometry" />
         </mxCell>
         <mxCell id="cls_orderdetail" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;OrderDetail&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- orderDetailId: String&lt;br&gt;- orderId: String&lt;br&gt;- serviceId: String&lt;br&gt;- quantity: Integer&lt;br&gt;- duration: String&lt;br&gt;- price: Double&lt;/p&gt;" vertex="1">
           <mxGeometry height="130" width="170" x="610" y="300" as="geometry" />
         </mxCell>
         <mxCell id="cls_ticket" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;WarrantyTicket&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- ticketId: String&lt;br&gt;- orderId: String&lt;br&gt;- userId: String&lt;br&gt;- issueType: String&lt;br&gt;- description: String&lt;br&gt;- evidenceImage: String&lt;br&gt;- ticketStatus: String&lt;br&gt;- staffNote: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ submitTicket()&lt;br&gt;+ resolveTicket()&lt;/p&gt;" vertex="1">
-          <mxGeometry height="180" width="190" x="320" y="530" as="geometry" />
+          <mxGeometry height="200" width="190" x="320" y="590" as="geometry" />
         </mxCell>
         <mxCell id="e_cust_order" edge="1" parent="1" source="cls_cust" style="endArrow=none;html=1;rounded=0;strokeWidth=1.2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="cls_order">
           <mxGeometry relative="1" as="geometry" />
@@ -55,43 +44,61 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="lbl_ow1" connectable="0" parent="e_order_warr" style="resizable=0;html=1;align=left;verticalAlign=bottom;fontSize=11;fontFamily=Times New Roman;" value="1" vertex="1">
-          <mxGeometry relative="1" x="-0.7" as="geometry" />
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="9" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="lbl_ow2" connectable="0" parent="e_order_warr" style="resizable=0;html=1;align=right;verticalAlign=bottom;fontSize=11;fontFamily=Times New Roman;" value="0..*" vertex="1">
-          <mxGeometry relative="1" x="0.7" as="geometry" />
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="10" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="cls_cat" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ServiceCategory&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- categoryId: String&lt;br&gt;- categoryName: String&lt;br&gt;- description: String&lt;/p&gt;" vertex="1">
           <mxGeometry height="90" width="180" x="580" y="50" as="geometry" />
         </mxCell>
         <mxCell id="cls_service" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=none;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;AIService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- serviceId: String&lt;br&gt;- categoryId: String&lt;br&gt;- serviceName: String&lt;br&gt;- description: String&lt;br&gt;- planDuration: String&lt;br&gt;- price: Double&lt;br&gt;- imageUrl: String&lt;br&gt;- status: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ updatePrice(): Void&lt;/p&gt;" vertex="1">
-          <mxGeometry height="190" width="190" x="880" y="240" as="geometry" />
+          <mxGeometry height="190" width="190" x="880" y="270" as="geometry" />
         </mxCell>
         <mxCell id="cls_cart" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CartItem&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- itemId: String&lt;br&gt;- serviceId: String&lt;br&gt;- planDuration: String&lt;br&gt;- quantity: Integer&lt;br&gt;- unitPrice: Double&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ calculateSubTotal()&lt;/p&gt;" vertex="1">
-          <mxGeometry height="130" width="170" x="320" y="50" as="geometry" />
+          <mxGeometry height="135" width="170" x="960" y="10" as="geometry" />
         </mxCell>
         <mxCell id="cls_review" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Review&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- reviewId: String&lt;br&gt;- serviceId: String&lt;br&gt;- userId: String&lt;br&gt;- rating: Integer&lt;br&gt;- comment: String&lt;br&gt;- createdAt: Date&lt;/p&gt;" vertex="1">
-          <mxGeometry height="130" width="180" x="880" y="520" as="geometry" />
+          <mxGeometry height="130" width="180" x="885" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="e_cat_serv" edge="1" parent="1" source="cls_cat" style="endArrow=diamond;endFill=1;endSize=14;html=1;rounded=0;strokeWidth=1.2;exitX=1;exitY=0.5;entryX=0.5;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="cls_service">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e_cat_serv" edge="1" parent="1" style="endArrow=diamond;endFill=1;endSize=14;html=1;rounded=0;strokeWidth=1.2;exitX=1;exitY=0.5;edgeStyle=orthogonalEdgeStyle;">
+          <mxGeometry relative="1" x="0.1077" as="geometry">
+            <mxPoint x="760" y="105" as="sourcePoint" />
+            <mxPoint x="900" y="270" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="lbl_cs1" connectable="0" parent="e_cat_serv" style="resizable=0;html=1;align=left;verticalAlign=bottom;fontSize=11;fontFamily=Times New Roman;" value="1" vertex="1">
-          <mxGeometry relative="1" x="-0.8" as="geometry" />
+          <mxGeometry relative="1" x="-0.7639" as="geometry" />
         </mxCell>
         <mxCell id="lbl_cs2" connectable="0" parent="e_cat_serv" style="resizable=0;html=1;align=right;verticalAlign=bottom;fontSize=11;fontFamily=Times New Roman;" value="0..*" vertex="1">
-          <mxGeometry relative="1" x="0.8" as="geometry" />
+          <mxGeometry relative="1" x="0.4892" as="geometry">
+            <mxPoint y="63" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="e_detail_serv" edge="1" parent="1" source="cls_orderdetail" style="endArrow=none;html=1;rounded=0;strokeWidth=1.2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="cls_service">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="lbl_ds1" connectable="0" parent="e_detail_serv" style="resizable=0;html=1;align=left;verticalAlign=bottom;fontSize=11;fontFamily=Times New Roman;" value="0..*" vertex="1">
-          <mxGeometry relative="1" x="-0.7" as="geometry" />
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint x="-15" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="lbl_ds2" connectable="0" parent="e_detail_serv" style="resizable=0;html=1;align=right;verticalAlign=bottom;fontSize=11;fontFamily=Times New Roman;" value="1" vertex="1">
-          <mxGeometry relative="1" x="0.7" as="geometry" />
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint x="5" as="offset" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="e_cart_serv" edge="1" parent="1" source="cls_cart" style="endArrow=none;html=1;rounded=0;strokeWidth=1.2;exitX=1;exitY=0.5;entryX=0.2;entryY=0;edgeStyle=orthogonalEdgeStyle;" target="cls_service">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e_cart_serv" edge="1" parent="1" source="cls_cart" style="endArrow=none;html=1;rounded=0;strokeWidth=1.2;entryX=0.2;entryY=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="cls_service">
+          <mxGeometry relative="1" x="-0.4163" as="geometry">
+            <Array as="points">
+              <mxPoint x="1045" y="270" />
+            </Array>
+            <mxPoint x="1040" y="190" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="e_serv_rev" edge="1" parent="1" source="cls_service" style="endArrow=none;html=1;rounded=0;strokeWidth=1.2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="cls_review">
           <mxGeometry relative="1" as="geometry" />
@@ -103,7 +110,7 @@
           <mxGeometry relative="1" x="0.7" as="geometry" />
         </mxCell>
         <mxCell id="cls_key" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;LicenseKey&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- keyId: String&lt;br&gt;- serviceId: String&lt;br&gt;- detailId: String&lt;br&gt;- keyCode: String&lt;br&gt;- keyStatus: String&lt;br&gt;- assignedOrderId: String&lt;/p&gt;" vertex="1">
-          <mxGeometry height="135" width="180" x="1170" y="255" as="geometry" />
+          <mxGeometry height="135" width="180" x="1170" y="295" as="geometry" />
         </mxCell>
         <mxCell id="cls_supplier" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Times New Roman;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1.5;" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Supplier&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- supplierId: String&lt;br&gt;- supplierName: String&lt;br&gt;- email: String&lt;br&gt;- phone: String&lt;br&gt;- contactPerson: String&lt;/p&gt;" vertex="1">
           <mxGeometry height="120" width="170" x="1450" y="50" as="geometry" />
@@ -143,6 +150,21 @@
         </mxCell>
         <mxCell id="e_impdetail_serv" edge="1" parent="1" source="cls_importdetail" style="endArrow=none;html=1;rounded=0;strokeWidth=1.2;exitX=0;exitY=0.5;entryX=0.8;entryY=1;edgeStyle=orthogonalEdgeStyle;" target="cls_service">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ffsBPWvvvwh8BHNAOffa-2" edge="1" parent="1" source="cls_staff" style="endArrow=block;html=1;rounded=0;defaultLabelBackgroundColor=page;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endFill=0;" target="cls_user" value="">
+          <mxGeometry height="50" relative="1" width="50" x="0.375" as="geometry">
+            <Array as="points">
+              <mxPoint x="145" y="740" />
+            </Array>
+            <mxPoint x="110" y="530" as="sourcePoint" />
+            <mxPoint x="145" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ffsBPWvvvwh8BHNAOffa-4" edge="1" parent="1" source="cls_cust" style="endArrow=block;html=1;rounded=0;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endFill=0;" target="cls_user" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="160" y="480" as="sourcePoint" />
+            <mxPoint x="210" y="430" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

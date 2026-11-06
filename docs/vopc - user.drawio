@@ -1,0 +1,416 @@
+<mxfile host="Electron" pages="6">
+  <diagram name="vopc - đăng nhập đăng ký" id="HzlrlH2gewVnKRQV0cKg">
+    <mxGraphModel dx="1030" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b-FrmAuth" parent="1" style="shape=umlBoundary;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="Frm_DangKyDangNhap" vertex="1">
+          <mxGeometry height="80" width="110" x="25" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-b-auth" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+NhapThongTin();&#xa;+YeuCauDangKy();&#xa;+YeuCauDangNhap();&#xa;+HienThiThongBao();" vertex="1">
+          <mxGeometry height="65" width="130" x="15" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="c-CtrlAuth" parent="1" style="shape=umlControl;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="Ctrl_DangKyDangNhap" vertex="1">
+          <mxGeometry height="80" width="80" x="260" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-c-auth" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+KiemTraThongTin(email, sdt);&#xa;+XacThucDangNhap();&#xa;+LuuTaiKhoanMoi();&#xa;+LuuPhienDangNhap();" vertex="1">
+          <mxGeometry height="65" width="170" x="215" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="e-TaiKhoan" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="TaiKhoan" vertex="1">
+          <mxGeometry height="75" width="85" x="520" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-tk" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-TenDangNhap;&#xa;-MatKhau;&#xa;-TrangThai;&#xa;+TaoTaiKhoan();&#xa;+KiemTraTonTai();" vertex="1">
+          <mxGeometry height="75" width="100" x="515" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="e-KhachHang" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="KhachHang" vertex="1">
+          <mxGeometry height="75" width="85" x="520" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-kh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaKh;&#xa;-TenKh;&#xa;-Sdt;&#xa;-Email;&#xa;+LuuThongTin();" vertex="1">
+          <mxGeometry height="80" width="90" x="517.5" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="e-VaiTro" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="VaiTro" vertex="1">
+          <mxGeometry height="75" width="85" x="730" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-vt" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaVaiTro;&#xa;-TenVaiTro;&#xa;+GanVaiTro();" vertex="1">
+          <mxGeometry height="50" width="85" x="730" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-auth1" edge="1" parent="1" source="b-FrmAuth" style="endArrow=open;html=1;rounded=0;" target="c-CtrlAuth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-auth2" edge="1" parent="1" source="c-CtrlAuth" style="endArrow=open;html=1;rounded=0;" target="e-TaiKhoan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-auth3" edge="1" parent="1" source="c-CtrlAuth" style="endArrow=open;html=1;rounded=0;" target="e-KhachHang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-auth4" edge="1" parent="1" source="e-TaiKhoan" style="endArrow=none;html=1;rounded=0;" target="e-VaiTro">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-tk-n" connectable="0" parent="lnk-auth4" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-vt-1" connectable="0" parent="lnk-auth4" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-auth5" edge="1" parent="1" source="e-TaiKhoan" style="endArrow=none;html=1;rounded=0;" target="e-KhachHang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-tk-1" connectable="0" parent="lnk-auth5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-kh-1" connectable="0" parent="lnk-auth5" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="vopc - xem tìm kiếm dv" id="-v1pSbhAyWJsTt91s_VW">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b-FrmDV" parent="1" style="shape=umlBoundary;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="Frm_DichVuAI" vertex="1">
+          <mxGeometry height="80" width="100" x="40" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-b-dv" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+ChonDanhMuc();&#xa;+NhapTuKhoa();&#xa;+LocTheoGia();&#xa;+HienThiDSDichVu();" vertex="1">
+          <mxGeometry height="70" width="130" x="25" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="c-CtrlDV" parent="1" style="shape=umlControl;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="Ctrl_DichVuAI" vertex="1">
+          <mxGeometry height="80" width="80" x="270" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-c-dv" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+LayDSDichVu();&#xa;+TimKiem(tuKhoa);&#xa;+LocTheoDanhMuc(maDm);&#xa;+SapXepTheoGia();" vertex="1">
+          <mxGeometry height="70" width="160" x="230" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="e-DanhMuc" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="DanhMucAI" vertex="1">
+          <mxGeometry height="75" width="85" x="530" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-dm" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaDm;&#xa;-TenDm;&#xa;-MoTa;&#xa;+LayDanhMuc();" vertex="1">
+          <mxGeometry height="65" width="90" x="527.5" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e-DichVuAI" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="DichVuAI" vertex="1">
+          <mxGeometry height="75" width="85" x="530" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-dv" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaDv;&#xa;-TenDv;&#xa;-GiaBan;&#xa;-ThoiHan;&#xa;+LayThongTin();" vertex="1">
+          <mxGeometry height="80" width="90" x="527.5" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="e-DanhGia" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="DanhGia" vertex="1">
+          <mxGeometry height="75" width="85" x="740" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-dg" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaDg;&#xa;-SoSao;&#xa;-NoiDung;&#xa;+LayDanhGia();" vertex="1">
+          <mxGeometry height="65" width="90" x="737.5" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dv1" edge="1" parent="1" source="b-FrmDV" style="endArrow=open;html=1;rounded=0;" target="c-CtrlDV">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dv2" edge="1" parent="1" source="c-CtrlDV" style="endArrow=open;html=1;rounded=0;" target="e-DanhMuc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dv3" edge="1" parent="1" source="c-CtrlDV" style="endArrow=open;html=1;rounded=0;" target="e-DichVuAI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dv4" edge="1" parent="1" source="e-DanhMuc" style="endArrow=none;html=1;rounded=0;" target="e-DichVuAI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dm-1" connectable="0" parent="lnk-dv4" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dv-n" connectable="0" parent="lnk-dv4" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dv5" edge="1" parent="1" source="e-DichVuAI" style="endArrow=none;html=1;rounded=0;" target="e-DanhGia">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dvdg-1" connectable="0" parent="lnk-dv5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dg-n" connectable="0" parent="lnk-dv5" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="vopc - ql giỏ hàng" id="8nNiHXesUhF8-vnvulyE">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b-FrmGH" parent="1" style="shape=umlBoundary;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="Frm_GioHang" vertex="1">
+          <mxGeometry height="80" width="100" x="50" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-b-gh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+ThemDichVuVaoGio();&#xa;+CapNhatSoLuong();&#xa;+XoaDichVu();&#xa;+YeuCauDatHang();&#xa;+HienThiGioHang();" vertex="1">
+          <mxGeometry height="80" width="145" x="35" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="c-CtrlGH" parent="1" style="shape=umlControl;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="Ctrl_GioHang" vertex="1">
+          <mxGeometry height="80" width="80" x="290" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-c-gh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+ThemVaoGio(maDv, thoiHan);&#xa;+CapNhatSoLuong(maDv, sl);&#xa;+XoaKhoiGio(maDv);&#xa;+TinhTongTien();" vertex="1">
+          <mxGeometry height="65" width="180" x="240" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="e-GioHang" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="GioHang" vertex="1">
+          <mxGeometry height="75" width="85" x="540" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-gh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaGh;&#xa;-TongTien;&#xa;+TinhTong();&#xa;+LamRong();" vertex="1">
+          <mxGeometry height="70" width="90" x="537.5" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ChiTietGH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="ChiTietGioHang" vertex="1">
+          <mxGeometry height="75" width="90" x="750" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-ctgh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-SoLuong;&#xa;-DonGia;&#xa;-ThoiHan;&#xa;+CapNhat();" vertex="1">
+          <mxGeometry height="65" width="100" x="745" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e-DichVuAI_GH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="DichVuAI" vertex="1">
+          <mxGeometry height="75" width="85" x="540" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-dvgh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaDv;&#xa;-TenDv;&#xa;-GiaBan;&#xa;+LayGia();" vertex="1">
+          <mxGeometry height="70" width="90" x="537.5" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh1" edge="1" parent="1" source="b-FrmGH" style="endArrow=open;html=1;rounded=0;" target="c-CtrlGH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh2" edge="1" parent="1" source="c-CtrlGH" style="endArrow=open;html=1;rounded=0;" target="e-GioHang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh3" edge="1" parent="1" source="c-CtrlGH" style="endArrow=open;html=1;rounded=0;" target="e-DichVuAI_GH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh4" edge="1" parent="1" source="e-GioHang" style="endArrow=none;html=1;rounded=0;" target="e-ChiTietGH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-gh-1" connectable="0" parent="lnk-gh4" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-ctgh-n" connectable="0" parent="lnk-gh4" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh5" edge="1" parent="1" source="e-ChiTietGH" style="endArrow=none;html=1;rounded=0;" target="e-DichVuAI_GH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-ctdv-n" connectable="0" parent="lnk-gh5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dvgh-1" connectable="0" parent="lnk-gh5" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="vopc - đặt hàng" id="ONl5elVcUwe7n7NEi8RF">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b-FrmDH" parent="1" style="shape=umlBoundary;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="Frm_DatHang" vertex="1">
+          <mxGeometry height="80" width="100" x="40" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-b-dh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+NhapThongTinNhan();&#xa;+ChonPhuongThucTT();&#xa;+ApDungVoucher();&#xa;+XacNhanDatHang();&#xa;+HienThiKetQua();" vertex="1">
+          <mxGeometry height="80" width="140" x="25" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="c-CtrlDH" parent="1" style="shape=umlControl;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="Ctrl_DatHang" vertex="1">
+          <mxGeometry height="80" width="80" x="270" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-c-dh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+KiemTraThongTin(email, sdt);&#xa;+TaoDonHang();&#xa;+XuLyThanhToan(pttt);&#xa;+LuuDonHang();&#xa;+XoaGioHang();" vertex="1">
+          <mxGeometry height="80" width="170" x="225" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="e-DonHang" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="DonHang" vertex="1">
+          <mxGeometry height="75" width="85" x="520" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-dh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaDh;&#xa;-NgayDat;&#xa;-TongTien;&#xa;-TrangThai;&#xa;-Pttt;&#xa;+TaoDonHang();" vertex="1">
+          <mxGeometry height="85" width="90" x="517.5" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ChiTietDH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="ChiTietDonHang" vertex="1">
+          <mxGeometry height="75" width="90" x="740" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-ctdh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-SoLuong;&#xa;-DonGia;&#xa;-ThoiHan;&#xa;+LuuChiTiet();" vertex="1">
+          <mxGeometry height="65" width="100" x="735" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e-KhachHang_DH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="KhachHang" vertex="1">
+          <mxGeometry height="75" width="85" x="520" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-khdh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaKh;&#xa;-TenKh;&#xa;-Email;&#xa;-Sdt;&#xa;+LayThongTin();" vertex="1">
+          <mxGeometry height="75" width="90" x="517.5" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="e-DichVuAI_DH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="DichVuAI" vertex="1">
+          <mxGeometry height="75" width="85" x="740" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-dvdh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaDv;&#xa;-TenDv;&#xa;-GiaBan;&#xa;+LayThongTin();" vertex="1">
+          <mxGeometry height="70" width="90" x="737.5" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dh1" edge="1" parent="1" source="b-FrmDH" style="endArrow=open;html=1;rounded=0;" target="c-CtrlDH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dh2" edge="1" parent="1" source="c-CtrlDH" style="endArrow=open;html=1;rounded=0;" target="e-DonHang">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dh3" edge="1" parent="1" source="c-CtrlDH" style="endArrow=open;html=1;rounded=0;" target="e-KhachHang_DH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dh4" edge="1" parent="1" source="e-DonHang" style="endArrow=none;html=1;rounded=0;" target="e-ChiTietDH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dh1-1" connectable="0" parent="lnk-dh4" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-ctdh-n" connectable="0" parent="lnk-dh4" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dh5" edge="1" parent="1" source="e-ChiTietDH" style="endArrow=none;html=1;rounded=0;" target="e-DichVuAI_DH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-ctdv-n2" connectable="0" parent="lnk-dh5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dvdh-1" connectable="0" parent="lnk-dh5" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-dh6" edge="1" parent="1" source="e-DonHang" style="endArrow=none;html=1;rounded=0;" target="e-KhachHang_DH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dhkh-n" connectable="0" parent="lnk-dh6" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-khdh-1" connectable="0" parent="lnk-dh6" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="vopc - bảo hành" id="hqSFLvo0Ph9znfX5xXZU">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b-FrmBH" parent="1" style="shape=umlBoundary;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="Frm_BaoHanh" vertex="1">
+          <mxGeometry height="80" width="100" x="40" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-b-bh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+NhapMaDonHang();&#xa;+ChonLoaiSuCo();&#xa;+DinhKemHinhAnh();&#xa;+GuiYeuCauBaoHanh();&#xa;+HienThiKetQua();" vertex="1">
+          <mxGeometry height="80" width="140" x="25" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="c-CtrlBH" parent="1" style="shape=umlControl;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="Ctrl_BaoHanh" vertex="1">
+          <mxGeometry height="80" width="80" x="280" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-c-bh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+KiemTraDieuKien(maDh);&#xa;+TaoPhieuBaoHanh();&#xa;+LuuYeuCau();&#xa;+CapNhatTrangThai();" vertex="1">
+          <mxGeometry height="65" width="160" x="240" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="e-DonHang_BH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="DonHang" vertex="1">
+          <mxGeometry height="75" width="85" x="540" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-dhbh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaDh;&#xa;-NgayDat;&#xa;-TrangThai;&#xa;+LayTrangThai();" vertex="1">
+          <mxGeometry height="65" width="90" x="537.5" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="e-PhieuBH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="PhieuBaoHanh" vertex="1">
+          <mxGeometry height="75" width="90" x="540" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-pbh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaPhieu;&#xa;-LoaiSuCo;&#xa;-HinhAnh;&#xa;-TrangThai;&#xa;+TaoPhieu();" vertex="1">
+          <mxGeometry height="80" width="95" x="537.5" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="e-KhoKey_BH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="KhoKey" vertex="1">
+          <mxGeometry height="75" width="85" x="740" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-keybh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaKey;&#xa;-TaiKhoan;&#xa;-MatKhau;&#xa;-TrangThai;&#xa;+CapLaiKey();" vertex="1">
+          <mxGeometry height="80" width="95" x="735" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-bh1" edge="1" parent="1" source="b-FrmBH" style="endArrow=open;html=1;rounded=0;" target="c-CtrlBH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-bh2" edge="1" parent="1" source="c-CtrlBH" style="endArrow=open;html=1;rounded=0;" target="e-DonHang_BH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-bh3" edge="1" parent="1" source="c-CtrlBH" style="endArrow=open;html=1;rounded=0;" target="e-PhieuBH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-bh4" edge="1" parent="1" source="e-DonHang_BH" style="endArrow=none;html=1;rounded=0;" target="e-PhieuBH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dhbh-1" connectable="0" parent="lnk-bh4" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-pbh-n" connectable="0" parent="lnk-bh4" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-bh5" edge="1" parent="1" source="e-PhieuBH" style="endArrow=none;html=1;rounded=0;" target="e-KhoKey_BH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-pbh-key" connectable="0" parent="lnk-bh5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-key-1" connectable="0" parent="lnk-bh5" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="vopc - ql giỏ hàng" id="xWUDPpOjOyY7tHK0RjSQ">
+    <mxGraphModel dx="1030" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b-FrmGH" parent="1" style="shape=umlBoundary;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="Frm_GioHang" vertex="1">
+          <mxGeometry height="80" width="100" x="60" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-b-gh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+ThemSpVaoGio();&#xa;+XoaSpKhoiGio();&#xa;+YeuCauThanhToan();&#xa;+HienThiGioHang();" vertex="1">
+          <mxGeometry height="70" width="145" x="45" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="c-CtrlGH" parent="1" style="shape=umlControl;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="Ctrl_GioHang" vertex="1">
+          <mxGeometry height="80" width="90" x="320" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-c-gh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="+KiemTraTonKho(maBt, sl);&#xa;+XuLyThanhToan(pttt);&#xa;+TinhTongTien();" vertex="1">
+          <mxGeometry height="60" width="180" x="280" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="e-DonHangGH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=12;fontStyle=1;" value="DonHang" vertex="1">
+          <mxGeometry height="75" width="85" x="560" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-dhgh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaDh;&#xa;-TongTien;&#xa;-TrangThai;&#xa;+TongTien();&#xa;+Thanhtoan();" vertex="1">
+          <mxGeometry height="80" width="120" x="550" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ChitietGH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="ChitietDonHang" vertex="1">
+          <mxGeometry height="75" width="90" x="780" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-ctgh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-SoLuong;&#xa;-DonGia;&#xa;+ThemSp();&#xa;+XoaSp();" vertex="1">
+          <mxGeometry height="65" width="120" x="770" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="e-BienTheGH" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="BienTheSanPham" vertex="1">
+          <mxGeometry height="75" width="90" x="560" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-btgh" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-MaBt;&#xa;-Size;&#xa;-Mau;&#xa;-SoLuongTon;&#xa;+KiemTraTonKho();" vertex="1">
+          <mxGeometry height="80" width="130" x="550" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="e-CongTT" parent="1" style="shape=umlEntity;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=11;fontStyle=1;" value="CongThanhToan" vertex="1">
+          <mxGeometry height="75" width="90" x="780" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="txt-e-congtt" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;" value="-TenCong;&#xa;+Xulygiaodich();&#xa;+Xacnhanketqua();" vertex="1">
+          <mxGeometry height="65" width="130" x="770" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh1" edge="1" parent="1" source="b-FrmGH" style="endArrow=open;html=1;rounded=0;" target="c-CtrlGH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh2" edge="1" parent="1" source="c-CtrlGH" style="endArrow=open;html=1;rounded=0;" target="e-DonHangGH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh3" edge="1" parent="1" source="c-CtrlGH" style="endArrow=open;html=1;rounded=0;" target="e-BienTheGH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh-tt" edge="1" parent="1" source="c-CtrlGH" style="endArrow=open;html=1;rounded=0;" target="e-CongTT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh4" edge="1" parent="1" source="e-DonHangGH" style="endArrow=none;html=1;rounded=0;" target="e-ChitietGH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-dhgh-1" connectable="0" parent="lnk-gh4" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-ctgh-n" connectable="0" parent="lnk-gh4" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lnk-gh5" edge="1" parent="1" source="e-ChitietGH" style="endArrow=none;html=1;rounded=0;" target="e-BienTheGH">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-ctbt-n" connectable="0" parent="lnk-gh5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-bt-1" connectable="0" parent="lnk-gh5" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

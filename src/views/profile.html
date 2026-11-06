@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ sơ cá nhân — CherismAI</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../public/css/home.css">
+  <link rel="stylesheet" href="../public/css/profile.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon-box">
+          <i class="fa-solid fa-shapes"></i>
+        </div>
+        Cherism<span>AI</span>
+      </a>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm gói cước AI...">
+        <button id="searchBtn" title="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="index.html#services">Dịch vụ AI</a>
+        <a href="order_history.html">Đơn hàng</a>
+        <a href="policy/term.html">Chính sách</a>
+      </nav>
+
+      <div class="user-actions">
+        <a href="cart.html" class="cart-btn" title="Giỏ hàng">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+        <div id="userAuthArea" class="user-status"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+        <li><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i></li>
+        <li>Tài khoản</li>
+        <li><i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i></li>
+        <li class="current">Hồ sơ cá nhân</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MAIN ACCOUNT LAYOUT -->
+  <main class="container account-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="account-sidebar">
+      <div class="account-user-card">
+        <div class="user-avatar-circle" id="sidebarAvatar">U</div>
+        <h3 id="sidebarUsername">Người dùng</h3>
+        <div class="user-email-text" id="sidebarEmail">email@example.com</div>
+        <span class="user-role-badge" id="sidebarRole">Khách hàng</span>
+      </div>
+
+      <nav class="account-nav">
+        <a href="profile.html" class="account-nav-item active">
+          <i class="fa-regular fa-user"></i> Hồ sơ cá nhân
+        </a>
+        <a href="order_history.html" class="account-nav-item">
+          <i class="fa-regular fa-clipboard"></i> Đơn hàng của tôi
+        </a>
+        <a href="payment_history.html" class="account-nav-item">
+          <i class="fa-regular fa-credit-card"></i> Lịch sử thanh toán
+        </a>
+        <a href="auth/change.html" class="account-nav-item">
+          <i class="fa-solid fa-key"></i> Đổi mật khẩu
+        </a>
+        <a href="javascript:void(0)" onclick="handleLogout()" class="account-nav-item logout">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+        </a>
+      </nav>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <section class="account-main">
+      <!-- STAT CARDS -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #eff6ff; color: #2563eb;">
+            <i class="fa-solid fa-box-archive"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statOrderCount">0</div>
+            <div class="stat-label">Đơn hàng đã đặt</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #ecfdf5; color: #16a34a;">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statPaymentCount">0</div>
+            <div class="stat-label">Giao dịch thanh toán</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE FORM CARD -->
+      <div class="account-card">
+        <div class="account-card-header">
+          <h3><i class="fa-solid fa-address-card" style="color: var(--primary-color); margin-right: 6px;"></i> Thông tin tài khoản</h3>
+        </div>
+        <div class="account-card-body">
+          <div id="profileAlert" class="form-alert"></div>
+
+          <form id="profileForm" novalidate>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+              <!-- Mã định danh (UID) -->
+              <div class="form-group">
+                <label class="form-label">Mã tài khoản</label>
+                <input type="text" id="uidInput" class="form-input" style="background: #f8fafc; cursor: not-allowed;" readonly>
+              </div>
+
+              <!-- Vai trò -->
+              <div class="form-group">
+                <label class="form-label">Vai trò hệ thống</label>
+                <input type="text" id="roleInput" class="form-input" style="background: #f8fafc; cursor: not-allowed;" readonly>
+              </div>
+            </div>
+
+            <!-- Tên đăng nhập -->
+            <div class="form-group">
+              <label class="form-label" for="usernameInput">Tên người dùng (Username)</label>
+              <div class="form-input-wrap">
+                <i class="fa-regular fa-user form-input-icon"></i>
+                <input type="text" id="usernameInput" class="form-input" placeholder="Nhập tên người dùng..." required>
+              </div>
+              <div id="usernameError" class="form-error-msg">Tên người dùng phải có ít nhất 3 ký tự.</div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="form-label" for="emailInput">Địa chỉ Email</label>
+              <div class="form-input-wrap">
+                <i class="fa-regular fa-envelope form-input-icon"></i>
+                <input type="email" id="emailInput" class="form-input" placeholder="Nhập địa chỉ email..." required>
+              </div>
+              <div id="emailError" class="form-error-msg">Địa chỉ email không hợp lệ.</div>
+            </div>
+
+            <!-- Ngày tham gia -->
+            <div class="form-group">
+              <label class="form-label">Ngày tham gia hệ thống</label>
+              <input type="text" id="createdAtInput" class="form-input" style="background: #f8fafc; cursor: not-allowed;" readonly>
+            </div>
+
+            <!-- Actions -->
+            <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
+              <button type="submit" id="saveProfileBtn" class="btn btn-primary">
+                <i class="fa-regular fa-floppy-disk"></i> Lưu thay đổi
+              </button>
+              <a href="auth/change.html" class="btn btn-secondary">
+                <i class="fa-solid fa-key"></i> Đổi mật khẩu
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-msg" id="toastMsg"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <h4>CherismAI</h4>
+        <p>Đồ án 2: Website cung cấp dịch vụ AI phục vụ học tập và công việc.</p>
+        <p>Sinh viên: Nguyễn Anh Quân — MSSV: 10124262</p>
+        <p>Trường ĐH Sư phạm Kỹ thuật Hưng Yên</p>
+      </div>
+      <div class="footer-col">
+        <h4>Dịch vụ AI</h4>
+        <ul>
+          <li><a href="index.html#services">Tạo văn bản (ChatGPT, Claude)</a></li>
+          <li><a href="index.html#services">Tạo ảnh (Midjourney, Canva)</a></li>
+          <li><a href="index.html#services">Lập trình (Copilot, DeepSeek)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tài khoản</h4>
+        <ul>
+          <li><a href="cart.html">Giỏ hàng</a></li>
+          <li><a href="order_history.html">Lịch sử đơn hàng</a></li>
+          <li><a href="payment_history.html">Lịch sử thanh toán</a></li>
+          <li><a href="profile.html">Hồ sơ cá nhân</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Chính sách</h4>
+        <ul>
+          <li><a href="policy/term.html">Điều khoản dịch vụ</a></li>
+          <li><a href="policy/privacy.html">Chính sách bảo mật</a></li>
+          <li><a href="policy/refund.html">Chính sách hoàn tiền</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CherismAI — Nguyễn Anh Quân. Tất cả quyền được bảo lưu.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS (TÁCH RIÊNG HOÀN TOÀN) -->
+  <script src="../public/js/load_data.js"></script>
+  <script src="../public/js/profile.js"></script>
+</body>
+
+</html>

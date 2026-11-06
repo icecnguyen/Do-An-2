@@ -1,0 +1,19 @@
+[
+  {
+    "id": "ALL",
+    "name": "Tất cả"
+  },
+  {
+    "id": "TEXT",
+    "name": "Tạo văn bản"
+  },
+  {
+    "id": "IMAGE",
+    "name": "Tạo ảnh & Video"
+  },
+  {
+    "id": "CODE",
+    "name": "Lập trình & Code"
+  }
+]
+

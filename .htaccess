@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Không rewrite nếu request đã nằm trong thư mục src/
+    RewriteRule ^src/ - [L,NC]
+
+    # Chuyển tiếp toàn bộ request vào thư mục src/
+    RewriteRule ^(.*)$ src/$1 [L,QSA]
+</IfModule>
+
+# Cấu hình file index mặc định (hỗ trợ cả trường hợp index nằm trong views/)
+<IfModule mod_dir.c>
+    DirectoryIndex index.html index.php views/index.html
+</IfModule>
