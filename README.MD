@@ -27,3 +27,6 @@
     │   └── js/           # Xử lý logic & khởi tạo dữ liệu LocalStorage (load_data.js)
     └── views/            # Các trang HTML phía khách hàng
 ```
+
+## Preview
+Nhấn vào đây để chuyển hướng tới <a href="src/views/index.html">CherismAI</a>
