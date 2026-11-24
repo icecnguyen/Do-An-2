@@ -1,45 +1,37 @@
-// ============================================================
-// DỰ ÁN: CherismAI
-// TỆP: auth.js - Xử lý logic nghiệp vụ cho Login, Register, Change Password
-// ============================================================
-
 document.addEventListener("DOMContentLoaded", async () => {
-    // 1. Nạp dữ liệu tài khoản từ DataLoader
     if (window.DataLoader) {
         await DataLoader.initAccounts();
     }
 
-    // 2. Lấy tham số redirect từ URL nếu có
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get("redirect") || "../index.html";
 
-    // 3. Khởi tạo chức năng theo từng trang dựa trên form hiện diện
     initLoginForm(redirectUrl);
+    initForgotPasswordModal();
     initRegisterForm(redirectUrl);
     initChangePasswordForm();
     initGlobalCartBadge();
     initPasswordToggles();
+    initAuthHeaderSearch();
 });
 
-// ============================================================
-// I. LOGIC TRANG ĐĂNG NHẬP (login.html)
-// ============================================================
 function initLoginForm(redirectUrl) {
     const loginForm = document.getElementById("loginForm");
-    if (!loginForm) return;
 
-    // Chuyển hướng nếu đã đăng nhập
-    const currentUser = window.DataLoader ? DataLoader.getCurrentUser() : JSON.parse(localStorage.getItem("currentUser"));
-    if (currentUser) {
-        showAlert("Bạn đã đăng nhập. Đang chuyển hướng...", "success");
-        setTimeout(() => {
-            window.location.href = redirectUrl;
-        }, 600);
+    if (!loginForm) {
         return;
     }
 
-    // Cập nhật link sang trang register giữ lại redirect
+    const currentUser = window.DataLoader ? DataLoader.getCurrentUser() : JSON.parse(localStorage.getItem("currentUser"));
+
+    if (currentUser) {
+        showAlert("Bạn đã đăng nhập. Đang chuyển hướng...", "success");
+        setTimeout(() => { window.location.href = redirectUrl; }, 600);
+        return;
+    }
+
     const toRegLink = document.getElementById("toRegisterLink");
+
     if (toRegLink && redirectUrl) {
         toRegLink.href = `register.html?redirect=${encodeURIComponent(redirectUrl)}`;
     }
@@ -56,14 +48,15 @@ function initLoginForm(redirectUrl) {
         const accountVal = accountInput.value.trim();
         const passwordVal = passwordInput.value;
 
-        // Reset lỗi hiển thị
         hideAlert();
+
         accountInput.classList.remove("error");
         passwordInput.classList.remove("error");
         accountError.classList.remove("active");
         passwordError.classList.remove("active");
 
         let isValid = true;
+
         if (!accountVal) {
             accountInput.classList.add("error");
             accountError.classList.add("active");
@@ -76,9 +69,10 @@ function initLoginForm(redirectUrl) {
             isValid = false;
         }
 
-        if (!isValid) return;
+        if (!isValid) {
+            return;
+        }
 
-        // Đối soát tài khoản
         submitBtn.disabled = true;
         submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Đang xác thực...`;
 
@@ -104,7 +98,8 @@ function initLoginForm(redirectUrl) {
                 setTimeout(() => {
                     window.location.href = redirectUrl;
                 }, 800);
-            } else {
+            }
+            else {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket"></i> Đăng nhập`;
                 showAlert(`<i class="fa-solid fa-triangle-exclamation"></i> Tên đăng nhập hoặc mật khẩu không chính xác.`, "error");
@@ -113,21 +108,22 @@ function initLoginForm(redirectUrl) {
     });
 }
 
-// ============================================================
-// II. LOGIC TRANG ĐĂNG KÝ (register.html)
-// ============================================================
 function initRegisterForm(redirectUrl) {
     const registerForm = document.getElementById("registerForm");
-    if (!registerForm) return;
 
-    // Chuyển hướng nếu đã đăng nhập
+    if (!registerForm) {
+        return;
+    }
+
     const currentUser = window.DataLoader ? DataLoader.getCurrentUser() : JSON.parse(localStorage.getItem("currentUser"));
+
     if (currentUser) {
         window.location.href = "../index.html";
         return;
     }
 
     const toLoginLink = document.getElementById("toLoginLink");
+
     if (toLoginLink && redirectUrl) {
         toLoginLink.href = `login.html?redirect=${encodeURIComponent(redirectUrl)}`;
     }
@@ -137,7 +133,6 @@ function initRegisterForm(redirectUrl) {
     const passwordInput = document.getElementById("passwordInput");
     const confirmPasswordInput = document.getElementById("confirmPasswordInput");
     const termsCheckbox = document.getElementById("termsCheckbox");
-
     const usernameError = document.getElementById("usernameError");
     const emailError = document.getElementById("emailError");
     const passwordError = document.getElementById("passwordError");
@@ -153,8 +148,8 @@ function initRegisterForm(redirectUrl) {
         const passwordVal = passwordInput.value;
         const confirmVal = confirmPasswordInput.value;
 
-        // Reset lỗi
         hideAlert();
+
         [usernameInput, emailInput, passwordInput, confirmPasswordInput].forEach(el => el.classList.remove("error"));
         [usernameError, emailError, passwordError, confirmPasswordError, termsError].forEach(el => el.classList.remove("active"));
 
@@ -167,6 +162,7 @@ function initRegisterForm(redirectUrl) {
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         if (!emailRegex.test(emailVal)) {
             emailInput.classList.add("error");
             emailError.classList.add("active");
@@ -190,14 +186,15 @@ function initRegisterForm(redirectUrl) {
             isValid = false;
         }
 
-        if (!isValid) return;
+        if (!isValid) {
+            return;
+        }
 
         submitBtn.disabled = true;
         submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Đang xử lý...`;
 
         setTimeout(() => {
             const accounts = window.DataLoader ? DataLoader.getAccounts() : (JSON.parse(localStorage.getItem("ai_accounts")) || []);
-
             const isDuplicateUser = accounts.some(acc => acc.username.toLowerCase() === usernameVal.toLowerCase());
             const isDuplicateEmail = accounts.some(acc => acc.email.toLowerCase() === emailVal.toLowerCase());
 
@@ -219,7 +216,6 @@ function initRegisterForm(redirectUrl) {
 
             const newUid = "usr" + String(accounts.length + 1).padStart(2, "0");
             const nowStr = new Date().toISOString().replace("T", " ").substring(0, 19);
-
             const newAccount = {
                 uid: newUid,
                 email: emailVal,
@@ -234,7 +230,6 @@ function initRegisterForm(redirectUrl) {
             localStorage.setItem("ai_accounts", JSON.stringify(accounts));
 
             showAlert(`<i class="fa-solid fa-circle-check"></i> Đăng ký tài khoản thành công! Đang chuyển đến trang đăng nhập...`, "success");
-
             setTimeout(() => {
                 const targetLogin = redirectUrl
                     ? `login.html?redirect=${encodeURIComponent(redirectUrl)}&registered=true`
@@ -245,34 +240,43 @@ function initRegisterForm(redirectUrl) {
     });
 }
 
-// ============================================================
-// III. LOGIC TRANG ĐỔI MẬT KHẨU (change.html)
-// ============================================================
 function initChangePasswordForm() {
     const form = document.getElementById("changePasswordForm");
-    if (!form) return;
-
-    // Kiểm tra đăng nhập
-    const currentUser = window.DataLoader ? DataLoader.getCurrentUser() : JSON.parse(localStorage.getItem("currentUser"));
-    if (!currentUser) {
-        window.location.href = `login.html?redirect=${encodeURIComponent("auth/change.html")}`;
+    if (!form) {
         return;
     }
 
-    // Đổ dữ liệu Sidebar
+    const currentUser = window.DataLoader ? DataLoader.getCurrentUser() : JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+        window.location.href = `login.html?redirect=${encodeURIComponent("change.html")}`;
+        return;
+    }
+
     const avatarInitial = (currentUser.username || "U").charAt(0).toUpperCase();
     const sidebarAvatar = document.getElementById("sidebarAvatar");
     const sidebarUsername = document.getElementById("sidebarUsername");
     const sidebarEmail = document.getElementById("sidebarEmail");
     const sidebarRole = document.getElementById("sidebarRole");
 
-    if (sidebarAvatar) sidebarAvatar.innerText = avatarInitial;
-    if (sidebarUsername) sidebarUsername.innerText = currentUser.username;
-    if (sidebarEmail) sidebarEmail.innerText = currentUser.email;
-    if (sidebarRole) sidebarRole.innerText = currentUser.role === "admin" ? "Quản trị viên" : "Khách hàng";
+    if (sidebarAvatar) {
+        sidebarAvatar.innerText = avatarInitial;
+    }
 
-    // Render trạng thái User ở Header
+    if (sidebarUsername) {
+        sidebarUsername.innerText = currentUser.username;
+    }
+
+    if (sidebarEmail) {
+        sidebarEmail.innerText = currentUser.email;
+    }
+
+    if (sidebarRole) {
+        sidebarRole.innerText = currentUser.role === "admin" ? "Quản trị viên" : "Khách hàng";
+    }
+
     const authArea = document.getElementById("userAuthArea");
+
     if (authArea) {
         authArea.innerHTML = `
             <a href="../profile.html" class="btn btn-secondary">
@@ -287,7 +291,6 @@ function initChangePasswordForm() {
     const currentPasswordInput = document.getElementById("currentPasswordInput");
     const newPasswordInput = document.getElementById("newPasswordInput");
     const confirmNewPasswordInput = document.getElementById("confirmNewPasswordInput");
-
     const currentPasswordError = document.getElementById("currentPasswordError");
     const newPasswordError = document.getElementById("newPasswordError");
     const confirmNewPasswordError = document.getElementById("confirmNewPasswordError");
@@ -300,12 +303,13 @@ function initChangePasswordForm() {
         const newPass = newPasswordInput.value;
         const conPass = confirmNewPasswordInput.value;
 
-        // Reset lỗi hiển thị
         hideAlert();
+
         [currentPasswordInput, newPasswordInput, confirmNewPasswordInput].forEach(el => el.classList.remove("error"));
         [currentPasswordError, newPasswordError, confirmNewPasswordError].forEach(el => el.classList.remove("active"));
 
         let isValid = true;
+
         if (!curPass) {
             currentPasswordInput.classList.add("error");
             currentPasswordError.classList.add("active");
@@ -330,7 +334,9 @@ function initChangePasswordForm() {
             return;
         }
 
-        if (!isValid) return;
+        if (!isValid) {
+            return;
+        }
 
         submitBtn.disabled = true;
         submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Đang cập nhật...`;
@@ -352,7 +358,6 @@ function initChangePasswordForm() {
             localStorage.setItem("ai_accounts", JSON.stringify(accounts));
 
             showAlert(`<i class="fa-solid fa-circle-check"></i> Đổi mật khẩu thành công! Đang chuyển về hồ sơ...`, "success");
-
             setTimeout(() => {
                 window.location.href = "../profile.html";
             }, 1000);
@@ -360,9 +365,6 @@ function initChangePasswordForm() {
     });
 }
 
-// ============================================================
-// IV. TIỆN ÍCH DÙNG CHUNG
-// ============================================================
 function initPasswordToggles() {
     setupToggle("togglePasswordBtn", "passwordInput", "togglePasswordIcon");
     setupToggle("toggleCurrentBtn", "currentPasswordInput", "toggleCurrentIcon");
@@ -372,7 +374,9 @@ function initPasswordToggles() {
         const btn = document.getElementById(btnId);
         const input = document.getElementById(inputId);
         const icon = document.getElementById(iconId);
-        if (!btn || !input || !icon) return;
+        if (!btn || !input || !icon) {
+            return;
+        }
 
         btn.addEventListener("click", () => {
             const isPassword = input.type === "password";
@@ -384,7 +388,11 @@ function initPasswordToggles() {
 
 function initGlobalCartBadge() {
     const badge = document.getElementById("cartCount");
-    if (!badge) return;
+
+    if (!badge) {
+        return;
+    }
+
     const cart = JSON.parse(localStorage.getItem("ai_cart")) || [];
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     badge.innerText = totalCount;
@@ -392,7 +400,11 @@ function initGlobalCartBadge() {
 
 function showAlert(msg, type) {
     const alertBox = document.getElementById("authAlert");
-    if (!alertBox) return;
+
+    if (!alertBox) {
+        return;
+    }
+
     alertBox.innerHTML = msg;
     alertBox.className = `form-alert ${type}`;
     alertBox.style.display = "flex";
@@ -400,12 +412,17 @@ function showAlert(msg, type) {
 
 function hideAlert() {
     const alertBox = document.getElementById("authAlert");
-    if (!alertBox) return;
+
+    if (!alertBox) {
+        return;
+    }
+
     alertBox.style.display = "none";
 }
 
 function handleLogout() {
     localStorage.removeItem("currentUser");
+
     showToast(`<i class="fa-solid fa-circle-info" style="color:#60a5fa"></i> Đã đăng xuất tài khoản`);
     setTimeout(() => {
         window.location.href = "../index.html";
@@ -414,12 +431,130 @@ function handleLogout() {
 
 function showToast(htmlContent) {
     let toast = document.getElementById("toastMsg");
-    if (!toast) return;
+
+    if (!toast) {
+        return;
+    }
+
     toast.innerHTML = htmlContent;
     toast.classList.add("active");
+
     clearTimeout(window.toastTimer);
+
     window.toastTimer = setTimeout(() => {
         toast.classList.remove("active");
     }, 2400);
 }
 
+function initForgotPasswordModal() {
+    const openLink = document.getElementById("openForgotPwdLink");
+    const modal = document.getElementById("forgotPasswordModal");
+    const closeBtn = document.getElementById("closeForgotModal");
+    const cancelBtn = document.getElementById("cancelForgotBtn");
+    const form = document.getElementById("forgotPasswordForm");
+
+    if (!openLink || !modal || !form) {
+        return;
+    }
+
+    const alertEl = document.getElementById("forgotAlert");
+    const showForgotAlert = (msg, type) => {
+        if (!alertEl) {
+            return;
+        }
+
+        alertEl.className = `form-alert ${type}`;
+        alertEl.style.display = "flex";
+        alertEl.innerHTML = msg;
+    };
+
+    const closeModal = () => {
+        modal.classList.remove("active");
+
+        if (alertEl) {
+            alertEl.className = "form-alert";
+            alertEl.style.display = "none";
+        }
+        form.reset();
+    };
+
+    openLink.addEventListener("click", () => modal.classList.add("active"));
+
+    if (closeBtn) {
+        closeBtn.addEventListener("click", closeModal);
+    }
+
+    if (cancelBtn) {
+        cancelBtn.addEventListener("click", closeModal);
+    }
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const accountVal = document.getElementById("forgotAccountInput").value.trim().toLowerCase();
+        const newPwd = document.getElementById("forgotNewPwdInput").value;
+        const confirmPwd = document.getElementById("forgotConfirmPwdInput").value;
+
+        if (!accountVal) {
+            showForgotAlert("Vui lòng nhập tên đăng nhập hoặc email.", "error");
+            return;
+        }
+
+        if (newPwd.length < 6) {
+            showForgotAlert("Mật khẩu mới phải có ít nhất 6 ký tự.", "error");
+            return;
+        }
+
+        if (newPwd !== confirmPwd) {
+            showForgotAlert("Xác nhận mật khẩu mới không khớp.", "error");
+            return;
+        }
+
+        const accounts = JSON.parse(localStorage.getItem("ai_accounts")) || [];
+        const idx = accounts.findIndex(a => a.username.toLowerCase() === accountVal || a.email.toLowerCase() === accountVal);
+
+        if (idx === -1) {
+            showForgotAlert("Không tìm thấy tài khoản khớp với tên đăng nhập hoặc email này.", "error");
+            return;
+        }
+
+        accounts[idx].password = newPwd;
+        localStorage.setItem("ai_accounts", JSON.stringify(accounts));
+
+        showForgotAlert("Đặt lại mật khẩu thành công! Bạn có thể đăng nhập ngay.", "success");
+        setTimeout(() => {
+            closeModal();
+        }, 1200);
+    });
+}
+
+function initAuthHeaderSearch() {
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+
+    if (!searchInput && !searchBtn) {
+        return;
+    }
+
+    const goHome = () => {
+        const kw = searchInput ? searchInput.value.trim() : "";
+        window.location.href = kw ? `../index.html?q=${encodeURIComponent(kw)}#services` : "../index.html#services";
+    };
+
+    if (searchBtn) {
+        searchBtn.addEventListener("click", goHome);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                goHome();
+            }
+        });
+    }
+}

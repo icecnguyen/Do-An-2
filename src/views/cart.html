@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ hàng & Thanh toán — CherismAI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../public/css/home.css">
+  <link rel="stylesheet" href="../public/css/profile.css">
+  <link rel="stylesheet" href="../public/css/cart.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon-box">
+          <i class="fa-solid fa-shapes"></i>
+        </div>
+        Cherism<span>AI</span>
+      </a>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm gói cước AI...">
+        <button id="searchBtn" title="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="index.html#services">Dịch vụ AI</a>
+        <a href="order_history.html">Đơn hàng</a>
+        <a href="policy/term.html">Chính sách</a>
+      </nav>
+
+      <div class="user-actions">
+        <a href="cart.html" class="cart-btn active-cart" title="Giỏ hàng">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+        <div id="userAuthArea" class="user-status"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+        <li><i class="fa-solid fa-chevron-right breadcrumb-sep"></i></li>
+        <li class="current">Giỏ hàng</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container cart-page">
+    <div class="cart-page-header">
+      <div>
+        <h1>Giỏ hàng của bạn</h1>
+        <p id="cartSubtitle">Kiểm tra lại các gói dịch vụ AI trước khi tạo đơn hàng</p>
+      </div>
+      <button type="button" class="btn btn-secondary" id="clearCartBtn" style="display: none;">
+        <i class="fa-regular fa-trash-can"></i> Xóa toàn bộ
+      </button>
+    </div>
+
+    <div class="empty-cart-box" id="emptyCartBox" style="display: none;">
+      <div class="empty-cart-icon">
+        <i class="fa-solid fa-cart-arrow-down"></i>
+      </div>
+      <h2>Giỏ hàng hiện đang trống</h2>
+      <p>Bạn chưa thêm gói dịch vụ AI nào vào giỏ. Hãy quay lại danh mục để lựa chọn gói phù hợp.</p>
+      <a href="index.html#services" class="btn btn-primary">
+        <i class="fa-solid fa-layer-group"></i> Xem danh sách dịch vụ AI
+      </a>
+    </div>
+
+    <div class="cart-layout" id="cartLayout" style="display: none;">
+
+      <div class="cart-left">
+        <div class="cart-card">
+          <div class="cart-card-title">
+            <span><i class="fa-solid fa-list-ul"></i> Danh sách dịch vụ đã chọn</span>
+            <span class="cart-item-count-tag" id="itemCountTag">0 mục</span>
+          </div>
+          <div class="cart-items-list" id="cartItemsList">
+
+          </div>
+        </div>
+
+        <div class="cart-card">
+          <div class="cart-card-title">
+            <span><i class="fa-regular fa-address-card"></i> Thông tin nhận tài khoản / API Key</span>
+          </div>
+          <div class="delivery-hint-box" id="deliveryTypeHint" style="display: none;"></div>
+          <form id="checkoutForm" class="checkout-form" novalidate>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="receiverName">Họ và tên người nhận <span class="req">*</span></label>
+                <input type="text" id="receiverName" placeholder="VD: Nguyễn Anh Quân" required>
+                <span class="field-error" id="nameError">Vui lòng nhập họ và tên người nhận.</span>
+              </div>
+              <div class="form-group">
+                <label for="receiverEmail">Email nhận tài khoản / kích hoạt <span class="req">*</span></label>
+                <input type="email" id="receiverEmail" placeholder="VD: email@gmail.com" required>
+                <span class="field-error" id="emailError">Vui lòng nhập địa chỉ email hợp lệ.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Phương thức thanh toán</label>
+              <div class="payment-methods">
+                <label class="payment-option active">
+                  <input type="radio" name="paymentMethod" value="Chuyển khoản ngân hàng" checked>
+                  <div class="payment-option-body">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <div>
+                      <strong>Chuyển khoản ngân hàng (MB Bank)</strong>
+                      <span>Chuyển khoản trực tiếp theo số tài khoản và nội dung đơn</span>
+                    </div>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="paymentMethod" value="Quét mã QR (VietQR)">
+                  <div class="payment-option-body">
+                    <i class="fa-solid fa-qrcode"></i>
+                    <div>
+                      <strong>Quét mã QR (VietQR)</strong>
+                      <span>Quét mã QR tự động điền số tiền và nội dung chuyển khoản</span>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="orderNote">Ghi chú đơn hàng (tùy chọn)</label>
+              <textarea id="orderNote" rows="2" placeholder="Nhập yêu cầu thêm nếu có (VD: nâng cấp trên email đang dùng...)"></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <aside class="cart-right">
+        <div class="summary-card">
+          <h3>Tóm tắt đơn hàng</h3>
+
+          <div class="voucher-box">
+            <label for="voucherInput">Mã giảm giá (Voucher)</label>
+            <div class="voucher-input-row">
+              <input type="text" id="voucherInput" placeholder="VD: SINHVIEN10 hoặc CHERISMAI20K">
+              <button type="button" class="btn btn-secondary" id="applyVoucherBtn">Áp dụng</button>
+            </div>
+            <div class="voucher-msg" id="voucherMsg"></div>
+          </div>
+
+          <div class="summary-rows">
+            <div class="summary-row">
+              <span>Tạm tính</span>
+              <strong id="summarySubtotal">0 đ</strong>
+            </div>
+            <div class="summary-row">
+              <span>Phí xử lý & kích hoạt</span>
+              <span class="free-tag">Miễn phí</span>
+            </div>
+            <div class="summary-row">
+              <span>Giảm giá</span>
+              <span id="summaryDiscount">0 đ</span>
+            </div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+            <span>Tổng thanh toán</span>
+            <strong id="summaryTotal">0 đ</strong>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-checkout" id="placeOrderBtn">
+            <i class="fa-solid fa-check-circle"></i> Xác nhận tạo đơn hàng
+          </button>
+
+          <p class="checkout-terms">
+            Bằng việc xác nhận tạo đơn, bạn đồng ý với
+            <a href="policy/term.html">Điều khoản dịch vụ</a> và
+            <a href="policy/refund.html">Chính sách hoàn tiền</a> của CherismAI.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="orderSuccessModal">
+    <div class="modal-box order-success-modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-circle-check" style="color: #16a34a;"></i> Tạo đơn hàng thành công</h3>
+        <button class="modal-close" id="closeSuccessModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="success-lead">Đơn hàng của bạn đã được ghi nhận vào hệ thống và đang chờ xác nhận thanh toán.</p>
+        <div class="order-receipt-box">
+          <div class="modal-info-row">
+            <span class="label">Mã đơn hàng:</span>
+            <span class="val" id="successOrderId">-</span>
+          </div>
+          <div class="modal-info-row">
+            <span class="label">Mã giao dịch:</span>
+            <span class="val" id="successTxnId">-</span>
+          </div>
+          <div class="modal-info-row">
+            <span class="label">Email nhận tài khoản:</span>
+            <span class="val" id="successEmail">-</span>
+          </div>
+          <div class="modal-info-row">
+            <span class="label">Phương thức:</span>
+            <span class="val" id="successMethod">-</span>
+          </div>
+          <div class="modal-info-row">
+            <span class="label">Số tiền cần thanh toán:</span>
+            <span class="val price-highlight" id="successAmount">0 đ</span>
+          </div>
+        </div>
+        <div class="transfer-guide" id="bankTransferGuide">
+          <strong>Thông tin chuyển khoản ngân hàng (MB Bank):</strong>
+          <p>Số tài khoản: <code>0987654321</code> <button type="button" class="copy-inline-btn" id="copyStkBtn" title="Sao chép STK"><i class="fa-regular fa-copy"></i></button> — Chủ TK: <strong>NGUYEN ANH QUAN</strong></p>
+          <p>Nội dung chuyển khoản: <code id="successTransferContent">CHERISMAI</code> <button type="button" class="copy-inline-btn" id="copyContentBtn" title="Sao chép nội dung"><i class="fa-regular fa-copy"></i></button></p>
+        </div>
+
+        <div class="qr-payment-box" id="qrPaymentGuide" style="display: none;">
+          <div class="qr-img-wrap">
+            <img id="vietQrImg" src="" alt="Mã QR thanh toán VietQR">
+          </div>
+          <div class="qr-info-text">
+            <strong>Quét mã VietQR để thanh toán</strong>
+            <p>Mở ứng dụng ngân hàng hoặc ví điện tử hỗ trợ VietQR để quét mã. Số tiền và nội dung <code id="qrTransferContent">ORD</code> đã được điền sẵn.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer modal-footer-payment">
+        <a href="order_history.html" class="btn btn-secondary">Thanh toán sau</a>
+        <button type="button" class="btn btn-success-solid" id="confirmPaidBtn">
+          <i class="fa-solid fa-check"></i> Xác nhận đã thanh toán (Mô phỏng)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-msg" id="toastMsg"></div>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <h4>CherismAI</h4>
+        <p>Đồ án 2: Website cung cấp dịch vụ AI.</p>
+        <p>HYUTE</p>
+      </div>
+      <div class="footer-col">
+        <h4>Dịch vụ AI</h4>
+        <ul>
+          <li><a href="index.html#services">Tạo văn bản (ChatGPT, Claude)</a></li>
+          <li><a href="index.html#services">Tạo ảnh (Midjourney, Canva)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tài khoản</h4>
+        <ul>
+          <li><a href="order_history.html">Lịch sử đơn hàng</a></li>
+          <li><a href="payment_history.html">Lịch sử thanh toán</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Chính sách</h4>
+        <ul>
+          <li><a href="policy/term.html">Điều khoản dịch vụ</a></li>
+          <li><a href="policy/privacy.html">Chính sách bảo mật</a></li>
+          <li><a href="policy/refund.html">Chính sách hoàn tiền</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CherismAI - All right reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../public/js/load_data.js"></script>
+  <script src="../public/js/cart.js"></script>
+</body>
+
+</html>

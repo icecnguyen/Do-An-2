@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảo hành & Hỗ trợ — CherismAI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../public/css/home.css">
+  <link rel="stylesheet" href="../public/css/profile.css">
+  <link rel="stylesheet" href="../public/css/history.css">
+  <link rel="stylesheet" href="../public/css/warranty.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon-box">
+          <i class="fa-solid fa-shapes"></i>
+        </div>
+        Cherism<span>AI</span>
+      </a>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm gói cước AI...">
+        <button id="searchBtn" title="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="index.html#services">Dịch vụ AI</a>
+        <a href="order_history.html">Đơn hàng</a>
+        <a href="policy/term.html">Chính sách</a>
+      </nav>
+
+      <div class="user-actions">
+        <a href="cart.html" class="cart-btn" title="Giỏ hàng">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+        <div id="userAuthArea" class="user-status"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+        <li><i class="fa-solid fa-chevron-right breadcrumb-sep"></i></li>
+        <li>Tài khoản</li>
+        <li><i class="fa-solid fa-chevron-right breadcrumb-sep"></i></li>
+        <li class="current">Bảo hành & Hỗ trợ</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container account-layout">
+
+    <aside class="account-sidebar">
+      <div class="account-user-card">
+        <div class="user-avatar-circle" id="sidebarAvatar">U</div>
+        <h3 id="sidebarUsername">Người dùng</h3>
+        <div class="user-email-text" id="sidebarEmail">email@example.com</div>
+        <span class="user-role-badge" id="sidebarRole">Khách hàng</span>
+      </div>
+
+      <nav class="account-nav">
+        <a href="profile.html" class="account-nav-item">
+          <i class="fa-regular fa-user"></i> Hồ sơ cá nhân
+        </a>
+        <a href="order_history.html" class="account-nav-item">
+          <i class="fa-regular fa-clipboard"></i> Đơn hàng của tôi
+        </a>
+        <a href="payment_history.html" class="account-nav-item">
+          <i class="fa-regular fa-credit-card"></i> Lịch sử thanh toán
+        </a>
+        <a href="warranty.html" class="account-nav-item active">
+          <i class="fa-solid fa-screwdriver-wrench"></i> Yêu cầu bảo hành
+        </a>
+        <a href="auth/change.html" class="account-nav-item">
+          <i class="fa-solid fa-key"></i> Đổi mật khẩu
+        </a>
+        <a href="javascript:void(0)" onclick="handleLogout()" class="account-nav-item logout">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+        </a>
+      </nav>
+    </aside>
+
+    <section class="account-main warranty-main">
+
+      <div class="history-card">
+        <div class="history-header">
+          <div>
+            <h2>Gửi yêu cầu bảo hành dịch vụ</h2>
+            <p>Hỗ trợ bảo hành 1 đổi 1 trong suốt thời gian sử dụng gói AI</p>
+          </div>
+        </div>
+
+        <form id="warrantyForm" class="warranty-form" novalidate>
+          <div class="warranty-row-2">
+            <div class="form-group">
+              <label for="warrantyOrderId">Chọn đơn hàng cần bảo hành <span class="req">*</span></label>
+              <select id="warrantyOrderId" required>
+                <option value="">-- Chọn mã đơn hàng --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="warrantyIssueType">Loại sự cố <span class="req">*</span></label>
+              <select id="warrantyIssueType" required>
+                <option value="Lỗi đăng nhập / sai mật khẩu (Tài khoản cấp sẵn)">Lỗi đăng nhập / sai mật khẩu (Tài khoản cấp sẵn)</option>
+                <option value="Tài khoản nâng cấp chính chủ bị mất gói">Tài khoản nâng cấp chính chủ bị mất gói</option>
+                <option value="API Key lỗi xác thực (401/403) hoặc sai hạn mức">API Key lỗi xác thực (401/403) hoặc sai hạn mức</option>
+                <option value="Lỗi giới hạn thiết bị hoặc xác minh">Lỗi giới hạn thiết bị hoặc xác minh</option>
+                <option value="Sự cố khác">Sự cố khác</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="warrantyDesc">Mô tả chi tiết sự cố <span class="req">*</span></label>
+            <textarea id="warrantyDesc" rows="3" placeholder="Mô tả cụ thể lỗi gặp phải khi sử dụng tài khoản AI..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="warrantyFile">Đính kèm hình ảnh minh chứng (tùy chọn)</label>
+            <div class="file-upload-wrap">
+              <input type="file" id="warrantyFile" accept="image/*">
+              <div class="file-preview-box" id="filePreviewBox" style="display: none;">
+                <img id="filePreviewImg" src="" alt="Ảnh minh chứng">
+                <button type="button" class="btn btn-secondary btn-xs" id="removeFileBtn">Xóa ảnh</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="warranty-submit-row">
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-paper-plane"></i> Gửi yêu cầu bảo hành
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="history-card">
+        <div class="history-header">
+          <div>
+            <h2>Tiến độ xử lý bảo hành</h2>
+            <p>Theo dõi trạng thái tiếp nhận và phản hồi từ bộ phận kỹ thuật</p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Mã phiếu</th>
+                <th>Mã đơn</th>
+                <th>Loại sự cố</th>
+                <th>Ngày gửi</th>
+                <th>Trạng thái</th>
+                <th>Chi tiết</th>
+              </tr>
+            </thead>
+            <tbody id="warrantyTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="empty-table-state" id="emptyWarrantyState" style="display: none;">
+          <i class="fa-solid fa-shield-heart"></i>
+          <p>Bạn chưa gửi yêu cầu bảo hành nào.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="warrantyDetailModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Chi tiết phiếu bảo hành</h3>
+        <button class="modal-close" id="closeWarrantyModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-info-row">
+          <span class="label">Mã phiếu:</span>
+          <span class="val" id="wDetailId">-</span>
+        </div>
+        <div class="modal-info-row">
+          <span class="label">Mã đơn hàng:</span>
+          <span class="val" id="wDetailOrder">-</span>
+        </div>
+        <div class="modal-info-row">
+          <span class="label">Loại sự cố:</span>
+          <span class="val" id="wDetailType">-</span>
+        </div>
+        <div class="modal-info-row">
+          <span class="label">Trạng thái:</span>
+          <span class="val" id="wDetailStatus">-</span>
+        </div>
+        <div class="modal-desc-title">Mô tả sự cố:</div>
+        <p class="modal-desc-content" id="wDetailDesc">-</p>
+
+        <div id="wDetailImgWrap" style="display: none; margin-top: 10px;">
+          <div class="modal-desc-title">Ảnh minh chứng đính kèm:</div>
+          <img id="wDetailImg" src="" alt="Ảnh minh chứng" style="max-width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;">
+        </div>
+
+        <div class="delivered-box" id="wStaffNoteBox" style="display: none;">
+          <strong><i class="fa-solid fa-headset"></i> Phản hồi từ kỹ thuật viên:</strong>
+          <span id="wStaffNoteText"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="closeWarrantyModalBtn">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-msg" id="toastMsg"></div>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <h4>CherismAI</h4>
+        <p>Đồ án 2: Website cung cấp dịch vụ AI.</p>
+        <p>HYUTE</p>
+      </div>
+      <div class="footer-col">
+        <h4>Dịch vụ AI</h4>
+        <ul>
+          <li><a href="index.html#services">Tạo văn bản (ChatGPT, Claude)</a></li>
+          <li><a href="index.html#services">Tạo ảnh (Midjourney, Canva)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tài khoản</h4>
+        <ul>
+          <li><a href="order_history.html">Lịch sử đơn hàng</a></li>
+          <li><a href="payment_history.html">Lịch sử thanh toán</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Chính sách</h4>
+        <ul>
+          <li><a href="policy/term.html">Điều khoản dịch vụ</a></li>
+          <li><a href="policy/privacy.html">Chính sách bảo mật</a></li>
+          <li><a href="policy/refund.html">Chính sách hoàn tiền</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CherismAI - All right reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../public/js/load_data.js"></script>
+  <script src="../public/js/warranty.js"></script>
+</body>
+
+</html>

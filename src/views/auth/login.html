@@ -6,20 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Đăng nhập — CherismAI</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="../../public/css/home.css">
   <link rel="stylesheet" href="../../public/css/auth.css">
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="auth-page">
 
-  <!-- AUTH HEADER -->
   <header class="auth-header">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
@@ -34,7 +32,6 @@
     </div>
   </header>
 
-  <!-- AUTH BODY -->
   <main class="auth-container">
     <div class="auth-card">
       <div class="auth-card-header">
@@ -42,26 +39,25 @@
         <p>Truy cập để quản lý giỏ hàng và theo dõi đơn dịch vụ AI</p>
       </div>
 
-      <!-- Thông báo trạng thái -->
       <div id="authAlert" class="form-alert"></div>
 
       <form id="loginForm" novalidate>
-        <!-- Tên đăng nhập hoặc Email -->
         <div class="form-group">
           <label class="form-label" for="accountInput">Tên đăng nhập hoặc Email</label>
           <div class="form-input-wrap">
             <i class="fa-regular fa-user form-input-icon"></i>
-            <input type="text" id="accountInput" class="form-input" placeholder="Ví dụ: user01 hoặc email..." required autocomplete="username">
+            <input type="text" id="accountInput" class="form-input" placeholder="Ví dụ: user01 hoặc email..." required
+              autocomplete="username">
           </div>
           <div id="accountError" class="form-error-msg">Vui lòng nhập tên đăng nhập hoặc email.</div>
         </div>
 
-        <!-- Mật khẩu -->
         <div class="form-group">
           <label class="form-label" for="passwordInput">Mật khẩu</label>
           <div class="form-input-wrap">
             <i class="fa-solid fa-lock form-input-icon"></i>
-            <input type="password" id="passwordInput" class="form-input" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
+            <input type="password" id="passwordInput" class="form-input" placeholder="Nhập mật khẩu..." required
+              autocomplete="current-password">
             <button type="button" class="password-toggle-btn" id="togglePasswordBtn" title="Hiện/ẩn mật khẩu">
               <i class="fa-regular fa-eye" id="togglePasswordIcon"></i>
             </button>
@@ -69,25 +65,22 @@
           <div id="passwordError" class="form-error-msg">Vui lòng nhập mật khẩu.</div>
         </div>
 
-        <!-- Tùy chọn -->
         <div class="form-options">
           <label class="form-checkbox">
             <input type="checkbox" id="rememberMeCheckbox" checked>
             <span>Ghi nhớ phiên đăng nhập</span>
           </label>
+          <a href="javascript:void(0)" id="openForgotPwdLink" class="forgot-link">Quên mật khẩu?</a>
         </div>
 
-        <!-- Nút Đăng nhập -->
         <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
           <i class="fa-solid fa-arrow-right-to-bracket"></i> Đăng nhập
         </button>
 
-        <!-- Chuyển sang đăng ký -->
         <div class="auth-footer-text">
           Bạn chưa có tài khoản? <a href="register.html" id="toRegisterLink">Đăng ký tài khoản mới</a>
         </div>
 
-        <!-- Gợi ý tài khoản mẫu -->
         <div class="auth-hint-box">
           <i class="fa-solid fa-circle-info" style="color: #2563eb;"></i> <strong>Tài khoản thử nghiệm:</strong><br>
           • Khách hàng: <code>user01</code> / Mật khẩu: <code>12345678</code><br>
@@ -97,14 +90,46 @@
     </div>
   </main>
 
-  <!-- AUTH FOOTER -->
+  <div class="modal-overlay" id="forgotPasswordModal">
+    <div class="modal-box" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3>Khôi phục mật khẩu</h3>
+        <button class="modal-close" id="closeForgotModal">&times;</button>
+      </div>
+      <form id="forgotPasswordForm" class="modal-body" novalidate>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 14px;">
+          Nhập tên đăng nhập hoặc email đã đăng ký để đặt lại mật khẩu mới.
+        </p>
+        <div id="forgotAlert" class="form-alert"></div>
+        <div class="form-group">
+          <label class="form-label" for="forgotAccountInput">Tên đăng nhập hoặc Email</label>
+          <input type="text" id="forgotAccountInput" class="form-input" style="padding-left: 12px;"
+            placeholder="VD: user01 hoặc example1@gmail.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="forgotNewPwdInput">Mật khẩu mới (tối thiểu 6 ký tự)</label>
+          <input type="password" id="forgotNewPwdInput" class="form-input" style="padding-left: 12px;"
+            placeholder="Nhập mật khẩu mới...">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="forgotConfirmPwdInput">Xác nhận mật khẩu mới</label>
+          <input type="password" id="forgotConfirmPwdInput" class="form-input" style="padding-left: 12px;"
+            placeholder="Nhập lại mật khẩu mới...">
+        </div>
+        <div class="modal-footer" style="padding: 12px 0 0 0; border-top: none;">
+          <button type="button" class="btn btn-secondary" id="cancelForgotBtn">Hủy</button>
+          <button type="submit" class="btn btn-primary">Đặt lại mật khẩu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <footer class="footer" style="padding: 18px 0; background: #ffffff; border-top: 1px solid var(--border-color);">
     <div class="container text-center" style="text-align: center; color: var(--text-muted); font-size: 12px;">
-      &copy; 2026 CherismAI — Nguyễn Anh Quân. Đồ án 2: Lập trình Website.
+      &copy; 2026 CherismAI - All right reserved.
     </div>
   </footer>
 
-  <!-- SCRIPTS (TÁCH RIÊNG HOÀN TOÀN) -->
   <script src="../../public/js/load_data.js"></script>
   <script src="../../public/js/auth.js"></script>
 </body>

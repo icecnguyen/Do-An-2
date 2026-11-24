@@ -6,20 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hồ sơ cá nhân — CherismAI</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../public/css/home.css">
   <link rel="stylesheet" href="../public/css/profile.css">
-  <!-- Font Awesome Icons -->
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header class="header">
     <div class="container nav-container">
       <a href="index.html" class="logo">
@@ -51,7 +49,6 @@
     </div>
   </header>
 
-  <!-- BREADCRUMB -->
   <div class="breadcrumb-wrap">
     <div class="container">
       <ul class="breadcrumb-list">
@@ -64,9 +61,8 @@
     </div>
   </div>
 
-  <!-- MAIN ACCOUNT LAYOUT -->
   <main class="container account-layout">
-    <!-- LEFT SIDEBAR -->
+
     <aside class="account-sidebar">
       <div class="account-user-card">
         <div class="user-avatar-circle" id="sidebarAvatar">U</div>
@@ -85,6 +81,9 @@
         <a href="payment_history.html" class="account-nav-item">
           <i class="fa-regular fa-credit-card"></i> Lịch sử thanh toán
         </a>
+        <a href="warranty.html" class="account-nav-item">
+          <i class="fa-solid fa-screwdriver-wrench"></i> Yêu cầu bảo hành
+        </a>
         <a href="auth/change.html" class="account-nav-item">
           <i class="fa-solid fa-key"></i> Đổi mật khẩu
         </a>
@@ -94,9 +93,8 @@
       </nav>
     </aside>
 
-    <!-- RIGHT CONTENT -->
     <section class="account-main">
-      <!-- STAT CARDS -->
+
       <div class="stat-grid">
         <div class="stat-card">
           <div class="stat-icon" style="background: #eff6ff; color: #2563eb;">
@@ -119,7 +117,6 @@
         </div>
       </div>
 
-      <!-- PROFILE FORM CARD -->
       <div class="account-card">
         <div class="account-card-header">
           <h3><i class="fa-solid fa-address-card" style="color: var(--primary-color); margin-right: 6px;"></i> Thông tin tài khoản</h3>
@@ -129,20 +126,18 @@
 
           <form id="profileForm" novalidate>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
-              <!-- Mã định danh (UID) -->
+
               <div class="form-group">
                 <label class="form-label">Mã tài khoản</label>
                 <input type="text" id="uidInput" class="form-input" style="background: #f8fafc; cursor: not-allowed;" readonly>
               </div>
 
-              <!-- Vai trò -->
               <div class="form-group">
                 <label class="form-label">Vai trò hệ thống</label>
                 <input type="text" id="roleInput" class="form-input" style="background: #f8fafc; cursor: not-allowed;" readonly>
               </div>
             </div>
 
-            <!-- Tên đăng nhập -->
             <div class="form-group">
               <label class="form-label" for="usernameInput">Tên người dùng (Username)</label>
               <div class="form-input-wrap">
@@ -152,7 +147,6 @@
               <div id="usernameError" class="form-error-msg">Tên người dùng phải có ít nhất 3 ký tự.</div>
             </div>
 
-            <!-- Email -->
             <div class="form-group">
               <label class="form-label" for="emailInput">Địa chỉ Email</label>
               <div class="form-input-wrap">
@@ -162,13 +156,11 @@
               <div id="emailError" class="form-error-msg">Địa chỉ email không hợp lệ.</div>
             </div>
 
-            <!-- Ngày tham gia -->
             <div class="form-group">
               <label class="form-label">Ngày tham gia hệ thống</label>
               <input type="text" id="createdAtInput" class="form-input" style="background: #f8fafc; cursor: not-allowed;" readonly>
             </div>
 
-            <!-- Actions -->
             <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
               <button type="submit" id="saveProfileBtn" class="btn btn-primary">
                 <i class="fa-regular fa-floppy-disk"></i> Lưu thay đổi
@@ -183,33 +175,27 @@
     </section>
   </main>
 
-  <!-- TOAST NOTIFICATION -->
   <div class="toast-msg" id="toastMsg"></div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-col">
         <h4>CherismAI</h4>
-        <p>Đồ án 2: Website cung cấp dịch vụ AI phục vụ học tập và công việc.</p>
-        <p>Sinh viên: Nguyễn Anh Quân — MSSV: 10124262</p>
-        <p>Trường ĐH Sư phạm Kỹ thuật Hưng Yên</p>
+        <p>Đồ án 2: Website cung cấp dịch vụ AI.</p>
+        <p>HYUTE</p>
       </div>
       <div class="footer-col">
         <h4>Dịch vụ AI</h4>
         <ul>
           <li><a href="index.html#services">Tạo văn bản (ChatGPT, Claude)</a></li>
           <li><a href="index.html#services">Tạo ảnh (Midjourney, Canva)</a></li>
-          <li><a href="index.html#services">Lập trình (Copilot, DeepSeek)</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Tài khoản</h4>
         <ul>
-          <li><a href="cart.html">Giỏ hàng</a></li>
           <li><a href="order_history.html">Lịch sử đơn hàng</a></li>
           <li><a href="payment_history.html">Lịch sử thanh toán</a></li>
-          <li><a href="profile.html">Hồ sơ cá nhân</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -222,11 +208,10 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 CherismAI — Nguyễn Anh Quân. Tất cả quyền được bảo lưu.</p>
+      <p>&copy; 2026 CherismAI - All right reserved.</p>
     </div>
   </footer>
 
-  <!-- SCRIPTS (TÁCH RIÊNG HOÀN TOÀN) -->
   <script src="../public/js/load_data.js"></script>
   <script src="../public/js/profile.js"></script>
 </body>

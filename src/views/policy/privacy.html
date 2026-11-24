@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chính sách bảo mật — CherismAI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../public/css/home.css">
+  <link rel="stylesheet" href="../../public/css/profile.css">
+  <link rel="stylesheet" href="../../public/css/policy.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon-box">
+          <i class="fa-solid fa-shapes"></i>
+        </div>
+        Cherism<span>AI</span>
+      </a>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm gói cước AI...">
+        <button id="searchBtn" title="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <nav class="nav-links">
+        <a href="../index.html">Trang chủ</a>
+        <a href="../index.html#services">Dịch vụ AI</a>
+        <a href="../order_history.html">Đơn hàng</a>
+        <a href="term.html" class="active">Chính sách</a>
+      </nav>
+
+      <div class="user-actions">
+        <a href="../cart.html" class="cart-btn" title="Giỏ hàng">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+        <div id="userAuthArea" class="user-status"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+        <li><i class="fa-solid fa-chevron-right breadcrumb-sep"></i></li>
+        <li>Chính sách</li>
+        <li><i class="fa-solid fa-chevron-right breadcrumb-sep"></i></li>
+        <li class="current">Chính sách bảo mật</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container policy-layout">
+    <aside class="policy-sidebar">
+      <div class="policy-sidebar-title">Danh mục chính sách</div>
+      <nav class="policy-nav">
+        <a href="term.html" class="policy-nav-link">
+          <i class="fa-regular fa-file-lines"></i> Điều khoản dịch vụ
+        </a>
+        <a href="privacy.html" class="policy-nav-link active">
+          <i class="fa-solid fa-shield-halved"></i> Chính sách bảo mật
+        </a>
+        <a href="refund.html" class="policy-nav-link">
+          <i class="fa-solid fa-rotate-left"></i> Chính sách hoàn tiền
+        </a>
+      </nav>
+
+      <div class="policy-toc">
+        <div class="policy-toc-title">Mục lục trang</div>
+        <a href="#sec-1">1. Thông tin thu thập</a>
+        <a href="#sec-2">2. Mục đích sử dụng</a>
+        <a href="#sec-3">3. Lưu trữ & bảo vệ</a>
+        <a href="#sec-4">4. Quyền của người dùng</a>
+      </div>
+    </aside>
+
+    <article class="policy-content">
+      <div class="policy-header">
+        <h1>Chính sách bảo mật thông tin</h1>
+        <div class="policy-updated">Cập nhật lần cuối: 20/09/2026</div>
+      </div>
+
+      <section class="policy-section" id="sec-1">
+        <h2>1. Thông tin được thu thập</h2>
+        <p>CherismAI chỉ thu thập những thông tin tối thiểu cần thiết để khởi tạo tài khoản và xử lý đơn hàng dịch vụ AI của bạn:</p>
+        <ul>
+          <li>Tên đăng nhập, họ tên người nhận và địa chỉ email liên hệ.</li>
+          <li>Thông tin đơn hàng, gói dịch vụ đã chọn và lịch sử giao dịch đối soát.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section" id="sec-2">
+        <h2>2. Mục đích sử dụng thông tin</h2>
+        <ul>
+          <li>Xác thực quyền truy cập tài khoản cá nhân trên hệ thống.</li>
+          <li>Bàn giao thông tin kích hoạt gói AI về đúng email người nhận.</li>
+          <li>Hỗ trợ tra cứu lại lịch sử đơn hàng và bảo hành trong thời gian sử dụng gói.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section" id="sec-3">
+        <h2>3. Lưu trữ và bảo vệ dữ liệu</h2>
+        <p>CherismAI cam kết không chia sẻ, mua bán hoặc chuyển giao thông tin cá nhân của người dùng cho bất kỳ bên thứ ba nào không liên quan đến quá trình kích hoạt dịch vụ.</p>
+        <div class="policy-note-box">
+          <strong>Cơ chế lưu trữ hiện tại:</strong> Trong phiên bản giao diện tĩnh (HTML/CSS/JS), thông tin phiên đăng nhập, giỏ hàng và lịch sử đơn hàng được lưu trực tiếp trên trình duyệt của bạn thông qua LocalStorage.
+        </div>
+      </section>
+
+      <section class="policy-section" id="sec-4">
+        <h2>4. Quyền chỉnh sửa và kiểm soát thông tin</h2>
+        <p>Người dùng có thể chủ động cập nhật tên hiển thị, email liên hệ tại trang <a href="../profile.html">Hồ sơ cá nhân</a> hoặc thay đổi mật khẩu bất cứ lúc nào tại trang <a href="../auth/change.html">Đổi mật khẩu</a>.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <h4>CherismAI</h4>
+        <p>Đồ án 2: Website cung cấp dịch vụ AI.</p>
+        <p>HYUTE</p>
+      </div>
+      <div class="footer-col">
+        <h4>Dịch vụ AI</h4>
+        <ul>
+          <li><a href="../index.html#services">Tạo văn bản (ChatGPT, Claude)</a></li>
+          <li><a href="../index.html#services">Tạo ảnh (Midjourney, Canva)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tài khoản</h4>
+        <ul>
+          <li><a href="../order_history.html">Lịch sử đơn hàng</a></li>
+          <li><a href="../payment_history.html">Lịch sử thanh toán</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Chính sách</h4>
+        <ul>
+          <li><a href="term.html">Điều khoản dịch vụ</a></li>
+          <li><a href="privacy.html">Chính sách bảo mật</a></li>
+          <li><a href="refund.html">Chính sách hoàn tiền</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CherismAI - All right reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../../public/js/load_data.js"></script>
+  <script src="../../public/js/policy.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đơn hàng của tôi — CherismAI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../public/css/home.css">
+  <link rel="stylesheet" href="../public/css/profile.css">
+  <link rel="stylesheet" href="../public/css/history.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon-box">
+          <i class="fa-solid fa-shapes"></i>
+        </div>
+        Cherism<span>AI</span>
+      </a>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm gói cước AI...">
+        <button id="searchBtn" title="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="index.html#services">Dịch vụ AI</a>
+        <a href="order_history.html" class="active">Đơn hàng</a>
+        <a href="policy/term.html">Chính sách</a>
+      </nav>
+
+      <div class="user-actions">
+        <a href="cart.html" class="cart-btn" title="Giỏ hàng">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+        <div id="userAuthArea" class="user-status"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+        <li><i class="fa-solid fa-chevron-right breadcrumb-sep"></i></li>
+        <li>Tài khoản</li>
+        <li><i class="fa-solid fa-chevron-right breadcrumb-sep"></i></li>
+        <li class="current">Đơn hàng của tôi</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container account-layout">
+
+    <aside class="account-sidebar">
+      <div class="account-user-card">
+        <div class="user-avatar-circle" id="sidebarAvatar">U</div>
+        <h3 id="sidebarUsername">Người dùng</h3>
+        <div class="user-email-text" id="sidebarEmail">email@example.com</div>
+        <span class="user-role-badge" id="sidebarRole">Khách hàng</span>
+      </div>
+
+      <nav class="account-nav">
+        <a href="profile.html" class="account-nav-item">
+          <i class="fa-regular fa-user"></i> Hồ sơ cá nhân
+        </a>
+        <a href="order_history.html" class="account-nav-item active">
+          <i class="fa-regular fa-clipboard"></i> Đơn hàng của tôi
+        </a>
+        <a href="payment_history.html" class="account-nav-item">
+          <i class="fa-regular fa-credit-card"></i> Lịch sử thanh toán
+        </a>
+        <a href="warranty.html" class="account-nav-item">
+          <i class="fa-solid fa-screwdriver-wrench"></i> Yêu cầu bảo hành
+        </a>
+        <a href="auth/change.html" class="account-nav-item">
+          <i class="fa-solid fa-key"></i> Đổi mật khẩu
+        </a>
+        <a href="javascript:void(0)" onclick="handleLogout()" class="account-nav-item logout">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+        </a>
+      </nav>
+    </aside>
+
+    <section class="account-main">
+      <div class="history-card">
+        <div class="history-header">
+          <div>
+            <h2>Đơn hàng của tôi</h2>
+            <p>Theo dõi trạng thái xử lý và thông tin bàn giao tài khoản AI</p>
+          </div>
+          <a href="index.html#services" class="btn btn-primary btn-xs">
+            <i class="fa-solid fa-plus"></i> Đặt dịch vụ mới
+          </a>
+        </div>
+
+        <div class="history-toolbar">
+          <div class="status-filters" id="orderStatusFilters">
+            <button type="button" class="filter-pill active" data-status="ALL">Tất cả</button>
+            <button type="button" class="filter-pill" data-status="pending">Chờ xử lý</button>
+            <button type="button" class="filter-pill" data-status="completed">Đã cấp tài khoản</button>
+            <button type="button" class="filter-pill" data-status="cancelled">Đã hủy</button>
+          </div>
+
+          <div class="history-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="orderSearchInput" placeholder="Tìm mã đơn, tên gói...">
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Mã đơn</th>
+                <th>Ngày tạo</th>
+                <th>Dịch vụ</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="empty-table-state" id="emptyOrdersState" style="display: none;">
+          <i class="fa-regular fa-folder-open"></i>
+          <p>Không có đơn hàng nào phù hợp với bộ lọc hiện tại.</p>
+          <a href="index.html#services" class="btn btn-secondary">Khám phá dịch vụ AI</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="orderDetailModal">
+    <div class="modal-box order-detail-modal">
+      <div class="modal-header">
+        <h3 id="detailModalTitle">Chi tiết đơn hàng</h3>
+        <button class="modal-close" id="closeOrderModal">&times;</button>
+      </div>
+      <div class="modal-body order-detail-body">
+
+        <div class="order-progress-bar" id="detailProgressBar"></div>
+
+        <div class="detail-info-grid">
+          <div class="detail-info-card">
+            <h4><i class="fa-regular fa-file-lines"></i> Thông tin đơn hàng</h4>
+            <div class="modal-info-row">
+              <span class="label">Mã đơn hàng:</span>
+              <span class="val code-cell" id="detailOrderId">-</span>
+            </div>
+            <div class="modal-info-row">
+              <span class="label">Thời gian tạo:</span>
+              <span class="val" id="detailCreatedAt">-</span>
+            </div>
+            <div class="modal-info-row">
+              <span class="label">Trạng thái:</span>
+              <span class="val" id="detailStatus">-</span>
+            </div>
+            <div class="modal-info-row">
+              <span class="label">Tổng thanh toán:</span>
+              <span class="val" id="detailTotal" style="color: #2563eb; font-weight: 700;">-</span>
+            </div>
+          </div>
+
+          <div class="detail-info-card">
+            <h4><i class="fa-regular fa-user"></i> Thông tin nhận & thanh toán</h4>
+            <div class="modal-info-row">
+              <span class="label">Người nhận:</span>
+              <span class="val" id="detailReceiver">-</span>
+            </div>
+            <div class="modal-info-row">
+              <span class="label">Email nhận:</span>
+              <span class="val" id="detailEmail">-</span>
+            </div>
+            <div class="modal-info-row">
+              <span class="label">Phương thức:</span>
+              <span class="val" id="detailMethod">-</span>
+            </div>
+            <div class="modal-info-row">
+              <span class="label">Ghi chú:</span>
+              <span class="val" id="detailNote">Không có</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section-block">
+          <h4><i class="fa-solid fa-box-open"></i> Danh sách dịch vụ trong đơn</h4>
+          <div class="table-responsive">
+            <table class="data-table detail-items-table">
+              <thead>
+                <tr>
+                  <th>Dịch vụ</th>
+                  <th>Hình thức</th>
+                  <th>Thời hạn / Hạn mức</th>
+                  <th>SL</th>
+                  <th>Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody id="detailItemsList"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="delivered-section-block" id="deliveredInfoBox" style="display: none;">
+          <div class="delivered-section-header">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <strong>Thông tin bàn giao dịch vụ</strong>
+              <span>Sử dụng thông tin dưới đây để đăng nhập hoặc cấu hình API Key</span>
+            </div>
+          </div>
+          <div class="delivered-cards-list" id="deliveredCardsList"></div>
+        </div>
+      </div>
+      <div class="modal-footer" id="detailModalFooter">
+        <button class="btn btn-secondary" id="closeOrderModalBtn">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-msg" id="toastMsg"></div>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <h4>CherismAI</h4>
+        <p>Đồ án 2: Website cung cấp dịch vụ AI.</p>
+        <p>HYUTE</p>
+      </div>
+      <div class="footer-col">
+        <h4>Dịch vụ AI</h4>
+        <ul>
+          <li><a href="index.html#services">Tạo văn bản (ChatGPT, Claude)</a></li>
+          <li><a href="index.html#services">Tạo ảnh (Midjourney, Canva)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tài khoản</h4>
+        <ul>
+          <li><a href="order_history.html">Lịch sử đơn hàng</a></li>
+          <li><a href="payment_history.html">Lịch sử thanh toán</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Chính sách</h4>
+        <ul>
+          <li><a href="policy/term.html">Điều khoản dịch vụ</a></li>
+          <li><a href="policy/privacy.html">Chính sách bảo mật</a></li>
+          <li><a href="policy/refund.html">Chính sách hoàn tiền</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CherismAI - All right reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../public/js/load_data.js"></script>
+  <script src="../public/js/order_history.js"></script>
+</body>
+
+</html>
