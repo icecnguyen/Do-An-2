@@ -29,4 +29,4 @@
 ```
 
 ## Preview
-Nhấn vào đây để chuyển hướng tới <a href="src/views/index.html">CherismAI</a>
+Nhấn vào đây để chuyển hướng tới <a href="https://doan2.icecnguyen.us.ci">CherismAI</a>
